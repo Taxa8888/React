@@ -6,7 +6,7 @@ import HeaderPureComponent from "./pure_component.jsx";
 
 const myHeader = React.createElement(
   "h1",
-  { className: "header_title" },
+  { style: { padding: "10px 20px", textAlign: "center", color: "green" } },
   "Hello World! (React.createElement)"
 );
 
