@@ -1,9 +1,14 @@
 import React from "react";
 
-class HeaderPureComponent extends React.PureComponent {
-    render() {
-        return <h4 style={{ padding: "10px 20px", textAlign: "center", color: "yellow"}}>Hello World! (React.PureComponent)</h4>
-    }
+export class HeaderPureComponent extends React.PureComponent {
+  render() {
+    return (
+      <h4
+        style={{ padding: "10px 20px", textAlign: "center", color: "yellow" }}
+      >
+        <span>Hello World, {this.props.name}</span>
+        <span>(React.PureComponent)</span>
+      </h4>
+    );
+  }
 }
-
-export default HeaderPureComponent;
