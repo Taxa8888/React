@@ -1,5 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (env, { stats, mode }) => {
@@ -9,7 +10,7 @@ module.exports = (env, { stats, mode }) => {
   return {
     context: path.resolve(__dirname, "./"),
     mode: "development",
-    entry: "./index.js",
+    entry: "./src/index.js",
     output: {
       filename: `${filename("js")}`,
       path: path.resolve(__dirname, "build"),
@@ -23,7 +24,10 @@ module.exports = (env, { stats, mode }) => {
       port: 3000,
     },
     plugins: [
-      new HTMLWebpackPlugin({ template: "./index.html" }),
+      new HTMLWebpackPlugin({ template: "./src/index.html" }),
+      new MiniCssExtractPlugin({
+        filename: `${filename("css")}`,
+      }),
       new CleanWebpackPlugin(),
     ],
     module: {
@@ -36,6 +40,17 @@ module.exports = (env, { stats, mode }) => {
             options: {
               presets: ["@babel/preset-env"],
             },
+          },
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
+        {
+          test: /\.(?:|gif|png|jpg|jpeg|svg)$/i,
+          loader: "file-loader",
+          options: {
+            name: `assets/${filename("[ext]")}`,
           },
         },
       ],
