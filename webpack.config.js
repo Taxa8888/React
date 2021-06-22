@@ -24,7 +24,7 @@ module.exports = (env, { stats, mode }) => {
       port: 3000,
     },
     plugins: [
-      new HTMLWebpackPlugin({ template: "./src/index.html" }),
+      new HTMLWebpackPlugin({ template: "./src/public/index.html" }),
       new MiniCssExtractPlugin({
         filename: `${filename("css")}`,
       }),
