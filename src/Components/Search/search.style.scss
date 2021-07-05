@@ -2,7 +2,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  &-title {
+
+  &Title {
     font: {
       family: Georgia;
       style: normal;
@@ -13,32 +14,33 @@
     line-height: 110%;
     letter-spacing: 0.175rem;
   }
-  &-option {
+
+  &Option {
     display: flex;
     margin: 1rem;
     align-items: center;
-  }
-}
 
-.search-option p {
-  font: {
-    family: Georgia;
-    style: normal;
-    size: 1.4rem;
-    weight: 200;
+    p {
+      font: {
+        family: Georgia;
+        style: normal;
+        size: 1.4rem;
+        weight: 200;
+      }
+      color: azure;
+      line-height: 110%;
+      letter-spacing: 0.175rem;
+      margin-right: 1rem;
+    }
   }
-  color: azure;
-  line-height: 110%;
-  letter-spacing: 0.175rem;
-  margin-right: 1rem;
-}
 
-.search input {
-  width: 60%;
-  height: 3rem;
-  margin: 1rem;
-  background-color: black;
-  color: azure;
-  font-size: 1.6rem;
-  font-weight: 600;
+  input {
+    width: 60%;
+    height: 3rem;
+    margin: 1rem;
+    background-color: black;
+    color: azure;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
 }

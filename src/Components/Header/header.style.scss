@@ -3,22 +3,22 @@
   height: 28rem;
   display: flex;
   background-image: url("../../img/header.jpg");
-}
 
-.headerContainer {
-  width: 100%;
-  padding: 4rem;
-}
-
-.header-title {
-  font: {
-    family: Georgia;
-    style: normal;
-    size: 2.4rem;
-    weight: 700;
+  &Container {
+    width: 100%;
+    padding: 4rem;
   }
-  color: azure;
-  line-height: 110%;
-  letter-spacing: 0.175rem;
-  margin-bottom: 3rem;
+
+  &Title {
+    font: {
+      family: Georgia;
+      style: normal;
+      size: 2.4rem;
+      weight: 700;
+    }
+    color: azure;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+    margin-bottom: 3rem;
+  }
 }

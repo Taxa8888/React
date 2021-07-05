@@ -9,9 +9,9 @@ export const Search = ({ title }) => {
   };
   return (
     <div className="search">
-      <p className="search-title">{title}</p>
+      <p className="searchTitle">{title}</p>
       <input placeholder={"Enter your request here ..."}></input>
-      <div className="search-option">
+      <div className="searchOption">
         <p>SEARCH BY</p>
         <Button isActive={isTitleActive} onClick={heandler}>
           Title

@@ -4,8 +4,8 @@ import "./footer.style.scss";
 export const Footer = ({ title }) => {
   return (
     <header className="footer">
-      <div className="footer-container">
-        <p className="footer-title">{title}</p>
+      <div className="footerContainer">
+        <p className="footerTitle">{title}</p>
       </div>
     </header>
   );

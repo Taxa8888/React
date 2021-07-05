@@ -6,11 +6,11 @@ export const MovieCard = ({ id, img, title, year, time, genre }) => {
     <div className="movie">
       <div
         style={{ backgroundImage: `url(${img})` }}
-        className="movie-img"
+        className="movieImg"
       ></div>
-      <div className="movie-text-content">
+      <div className="movieTextContent">
         <h1>{title}</h1>
-        <ul className="movie-gen">
+        <ul className="movieGen">
           <li>Release: {year}</li>
           <li>Duration: {time}</li>
           <li>Genre: {genre}</li>
