@@ -9,13 +9,16 @@ export const Search = ({ title }) => {
   };
   return (
     <div className="search">
-      <p className="searchTitle">{title}</p>
-      <input></input>
-      <Button isActive={isTitleActive} onClick={heandler}>
-        title
-      </Button>
-      <Button name="GENRE" />
-      <Button name="SEARCH" />
+      <p className="search-title">{title}</p>
+      <input placeholder={"Enter your request here ..."}></input>
+      <div className="search-option">
+        <p>SEARCH BY</p>
+        <Button isActive={isTitleActive} onClick={heandler}>
+          Title
+        </Button>
+        <Button>Genre</Button>
+        <Button style={{ marginLeft: "345px" }}>SEARCH</Button>
+      </div>
     </div>
   );
 };

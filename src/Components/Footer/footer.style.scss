@@ -3,16 +3,20 @@
   height: 6rem;
   display: flex;
   background-image: url("../../img/footer.jpg");
-}
-
-.footerTitle {
-  font: {
-    family: Georgia;
-    style: normal;
-    size: 3.2rem;
-    weight: 700;
+  &-container {
+    width: 100%;
+    padding: 2rem;
   }
-  color: azure;
-  line-height: 110%;
-  letter-spacing: 0.175rem;
+  &-title {
+    font: {
+      family: Georgia;
+      style: normal;
+      size: 2.4rem;
+      weight: 700;
+    }
+    color: azure;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+    margin-bottom: 3rem;
+  }
 }

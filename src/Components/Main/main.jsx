@@ -1,7 +1,7 @@
 import React from "react";
 import { MovieCard } from "../MovieCard/movieCard.jsx";
-import data from "../../data/movies.json";
 import "./main.style.scss";
+import data from "./../../data/mov.json";
 
 export const Main = () => {
   return (
@@ -10,8 +10,11 @@ export const Main = () => {
         {data.map((movie) => (
           <MovieCard
             key={movie.id}
-            title={movie.title}
             img={movie.poster_path}
+            title={movie.title}
+            year={movie.release_date.slice(0, 4)}
+            time={`${movie.runtime} min`}
+            genre={movie.genres[0]}
           />
         ))}
       </div>

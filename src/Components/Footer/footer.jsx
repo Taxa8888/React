@@ -5,7 +5,7 @@ export const Footer = ({ title }) => {
   return (
     <header className="footer">
       <div className="footer-container">
-        <p className="footerTitle">{title}</p>
+        <p className="footer-title">{title}</p>
       </div>
     </header>
   );
