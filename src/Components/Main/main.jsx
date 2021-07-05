@@ -14,7 +14,7 @@ export const Main = () => {
             title={movie.title}
             year={movie.release_date.slice(0, 4)}
             time={`${movie.runtime} min`}
-            genre={movie.genres[0]}
+            genre={`${movie.genres[0]} & ${movie.genres[1]}`}
           />
         ))}
       </div>
