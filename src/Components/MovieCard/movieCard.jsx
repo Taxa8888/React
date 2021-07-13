@@ -1,7 +1,7 @@
 import React from "react";
 import "./movieCard.style.scss";
 
-export const MovieCard = ({ id, img, title, year, time, genre }) => {
+export const MovieCard = ({ id, img, title, year, time, genre, onClick }) => {
   return (
     <div className="movie">
       <div

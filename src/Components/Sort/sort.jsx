@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./sort.style.scss";
 
-export const Sort = ({ count, children, onClick, isActive }) => {
+export const Sort = ({ count, children, onClick, isActive, data }) => {
   const [isActiveLink, setActiveLink] = useState(true);
 
   const heandler = () => {
@@ -10,7 +10,7 @@ export const Sort = ({ count, children, onClick, isActive }) => {
 
   return (
     <div className="sortContainer">
-      <div className="sortCount">{(count = 8)} movies found</div>
+      <div className="sortCount">{(count = data.length)} movies found</div>
       <div className="sortBy">
         Sort by
         <a

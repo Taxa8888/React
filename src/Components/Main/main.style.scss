@@ -9,4 +9,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.notFound {
+  display: flex;
+  min-height: 800px;
+  font-size: 76px;
+  align-items: center;
 }
