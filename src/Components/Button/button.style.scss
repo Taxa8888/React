@@ -22,8 +22,7 @@
   border-color: #ffffff;
 }
 
-button:disabled,
-button[disabled] {
+button.active {
   border: 1px solid #999999;
   background-color: red;
   color: #666666;

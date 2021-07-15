@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { MovieCard } from "../MovieCard/movieCard.jsx";
 import "./main.style.scss";
 
 export const Main = ({ data }) => {
-  const [countOfMovie, setCountOfMovie] = useState(0);
+  const foo = () => {
+    alert("aaaaa");
+  };
 
   return (
     <main className="main">
@@ -13,6 +15,7 @@ export const Main = ({ data }) => {
         ) : (
           data.map((movie) => (
             <MovieCard
+              onClick={foo}
               key={movie.id}
               img={movie.poster_path}
               title={movie.title}

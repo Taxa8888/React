@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./Components/App/App.jsx";
-import data from "./data/mov.json";
+import { App } from "./Components/App/app.jsx";
 import "./index.scss";
 
 ReactDOM.render(
   <>
-    <App data={data} />
+    <App />
   </>,
   document.getElementById("root")
 );

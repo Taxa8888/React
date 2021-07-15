@@ -1,9 +1,9 @@
 import React from "react";
 import "./movieCard.style.scss";
 
-export const MovieCard = ({ id, img, title, year, time, genre, onClick }) => {
+export const MovieCard = ({ img, title, year, time, genre, onClick }) => {
   return (
-    <div className="movie">
+    <div onClick={onClick} className="movie">
       <div
         style={{ backgroundImage: `url(${img})` }}
         className="movieImg"
