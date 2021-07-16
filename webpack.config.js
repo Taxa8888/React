@@ -1,32 +1,31 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = (env, { stats, mode }) => {
-  const isProd = mode === "production";
-  const filename = (ext) =>
-    isProd ? `[name].[contenthash].${ext}` : `[name].${ext}`;
+module.exports = (env, { mode }) => {
+  const isProd = mode === 'production';
+  const filename = (ext) => (isProd ? `[name].[contenthash].${ext}` : `[name].${ext}`);
   return {
-    context: path.resolve(__dirname, "./"),
-    mode: "development",
-    entry: "./src/index.js",
+    context: path.resolve(__dirname, './'),
+    mode: 'development',
+    entry: './src/index.jsx',
     output: {
-      filename: `${filename("js")}`,
-      path: path.resolve(__dirname, "build"),
-      publicPath: "",
+      filename: `${filename('js')}`,
+      path: path.resolve(__dirname, 'build'),
+      publicPath: '',
     },
     devServer: {
-      contentBase: path.resolve(__dirname, "build"),
+      contentBase: path.resolve(__dirname, 'build'),
       open: true,
       compress: true,
       hot: true,
       port: 3000,
     },
     plugins: [
-      new HTMLWebpackPlugin({ template: "./src/public/index.html" }),
+      new HTMLWebpackPlugin({ template: './src/public/index.html' }),
       new MiniCssExtractPlugin({
-        filename: `${filename("css")}`,
+        filename: `${filename('css')}`,
       }),
       new CleanWebpackPlugin(),
     ],
@@ -36,24 +35,27 @@ module.exports = (env, { stats, mode }) => {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
           test: /\.(?:|gif|png|jpg|jpeg|svg)$/i,
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: `assets/${filename("[ext]")}`,
+            name: `assets/${filename('[ext]')}`,
           },
         },
       ],
+    },
+    resolve: {
+      extensions: ['', '.js', '.jsx'],
     },
   };
 };

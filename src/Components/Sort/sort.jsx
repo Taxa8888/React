@@ -1,31 +1,34 @@
-import React, { useState } from "react";
-import "./sort.style.scss";
+import React from 'react';
+import Button from '../button/button';
+import { SORT_BY } from '../app/app.constants';
+import './sort.style.scss';
 
-export const Sort = ({ count, children, onClick, isActive, data }) => {
-  const [isActiveLink, setActiveLink] = useState(true);
+const Sort = ({ data, sortBy, onSortByChange }) => {
+    const handleSortByButtonClick = (sortByValue) => () => {
+        onSortByChange(sortByValue);
+    };
 
-  const heandler = () => {
-    setActiveLink(!isActiveLink);
-  };
-
-  return (
-    <div className="sortContainer">
-      <div className="sortCount">{(count = data.length)} movies found</div>
-      <div className="sortBy">
-        Sort by
-        <a
-          className={isActiveLink ? "sortA activeA" : "sortA"}
-          onClick={heandler}
-        >
-          release date
-        </a>
-        <a
-          className={!isActiveLink ? "sortA activeA" : "sortA"}
-          onClick={heandler}
-        >
-          rating
-        </a>
-      </div>
-    </div>
-  );
+    return (
+        <div className="sortContainer">
+            <div className="sortCount">{data.length} movies found</div>
+            <div className="sortBy">
+                Sort by
+                <Button
+                    className={`sortButton ${
+                        sortBy === SORT_BY.RELEASEDATE ? 'activeSortButton' : ''
+                    }`}
+                    onClick={handleSortByButtonClick(SORT_BY.RELEASEDATE)}
+                >
+                    release date
+                </Button>
+                <Button
+                    className={`sortButton ${sortBy === SORT_BY.RATING ? 'activeSortButton' : ''}`}
+                    onClick={handleSortByButtonClick(SORT_BY.RATING)}
+                >
+                    rating
+                </Button>
+            </div>
+        </div>
+    );
 };
+export default Sort;

@@ -1,31 +1,35 @@
-import React from "react";
-import { MovieCard } from "../MovieCard/movieCard.jsx";
-import "./main.style.scss";
+import React from 'react';
+import MovieCard from '../movieCard/movieCard';
+import './main.style.scss';
 
-export const Main = ({ data }) => {
-  const foo = () => {
-    alert("aaaaa");
-  };
-
-  return (
+const Main = ({ data }) => (
     <main className="main">
-      <div className="mainContainer">
-        {data.length === 0 ? (
-          <div className="notFound">No films found</div>
-        ) : (
-          data.map((movie) => (
-            <MovieCard
-              onClick={foo}
-              key={movie.id}
-              img={movie.poster_path}
-              title={movie.title}
-              year={movie.release_date.slice(0, 4)}
-              time={`${movie.runtime} min`}
-              genre={`${movie.genres[0]} & ${movie.genres[1]}`}
-            />
-          ))
-        )}
-      </div>
+        <div className="mainContainer">
+            {data.length === 0 ? (
+                <div className="notFound">No films found</div>
+            ) : (
+                data.map(
+                    ({
+                        idFilm,
+                        titleFilm,
+                        posterPathFilm,
+                        releaseDateFilm,
+                        runtimeFilm,
+                        genresFilm,
+                    }) => (
+                        <MovieCard
+                            key={idFilm}
+                            img={posterPathFilm}
+                            title={titleFilm}
+                            year={releaseDateFilm.slice(0, 4)}
+                            time={`${runtimeFilm} min`}
+                            genre={genresFilm.slice(0, 2).toString()}
+                        />
+                    )
+                )
+            )}
+        </div>
     </main>
-  );
-};
+);
+
+export default Main;

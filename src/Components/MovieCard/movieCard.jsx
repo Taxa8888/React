@@ -1,21 +1,20 @@
-import React from "react";
-import "./movieCard.style.scss";
+import React from 'react';
+import './movieCard.style.scss';
 
-export const MovieCard = ({ img, title, year, time, genre, onClick }) => {
-  return (
-    <div onClick={onClick} className="movie">
-      <div
-        style={{ backgroundImage: `url(${img})` }}
-        className="movieImg"
-      ></div>
-      <div className="movieTextContent">
-        <h1>{title}</h1>
-        <ul className="movieGen">
-          <li>Release: {year}</li>
-          <li>Duration: {time}</li>
-          <li>Genre: {genre}</li>
-        </ul>
-      </div>
+const MovieCard = ({ img, title, year, time, genre }) => (
+    <div className="movie">
+        <div>
+            <img src={img} alt="Error" className="movieImg" />
+        </div>
+        <div className="movieTextContent">
+            <h1>{title}</h1>
+            <ul className="movieGen">
+                <li>Release: {year}</li>
+                <li>Duration: {time}</li>
+                <li>Genres: {genre}</li>
+            </ul>
+        </div>
     </div>
-  );
-};
+);
+
+export default MovieCard;
