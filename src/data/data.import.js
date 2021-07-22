@@ -8,6 +8,7 @@ const dataMovies = movies.map((film) => ({
     posterPathFilm: film.poster_path,
     genresFilm: film.genres,
     runtimeFilm: film.runtime,
+    overviewfilm: film.overview,
 }));
 
 export default dataMovies;

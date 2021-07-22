@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../header/header';
+import HeaderDescription from '../headerdescription/headerdescription';
 import Sort from '../sort/sort';
+import SortDescription from '../sortdescription/sortdescription';
 import Main from '../main/main';
 import Footer from '../footer/footer';
 import dataMovies from '../../data/data.import';
@@ -12,6 +14,7 @@ const App = () => {
     const [movies, setMovies] = useState(dataMovies);
     const [searchBy, setSearchBy] = useState(SEARCH_BY.TITLE);
     const [sortBy, setSortBy] = useState(SORT_BY.RELEASEDATE);
+    const [chosenMovie, setChosenMovie] = useState('');
 
     if (sortBy === SORT_BY.RELEASEDATE) {
         movies.sort((a, b) => (a.releaseDateFilm > b.releaseDateFilm ? 1 : -1));
@@ -31,9 +34,25 @@ const App = () => {
 
     return (
         <>
-            <Header searchBy={searchBy} onSearch={handleSearch} onSearchByChange={setSearchBy} />
-            <Sort data={movies} sortBy={sortBy} onSortByChange={setSortBy} />
-            <Main data={movies} />
+            {chosenMovie === '' ? (
+                <Header
+                    searchBy={searchBy}
+                    onSearch={handleSearch}
+                    onSearchByChange={setSearchBy}
+                />
+            ) : (
+                <HeaderDescription
+                    data={movies}
+                    chosenMovie={chosenMovie}
+                    clickSearchButton={setChosenMovie}
+                />
+            )}
+            {chosenMovie === '' ? (
+                <Sort data={movies} sortBy={sortBy} onSortByChange={setSortBy} />
+            ) : (
+                <SortDescription data={movies} chosenMovie={chosenMovie} />
+            )}
+            <Main data={movies} clickChosenMovie={setChosenMovie} />
             <Footer />
         </>
     );

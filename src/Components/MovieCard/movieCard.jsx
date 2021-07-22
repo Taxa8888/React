@@ -1,8 +1,8 @@
 import React from 'react';
 import './movieCard.style.scss';
 
-const MovieCard = ({ img, title, year, time, genre }) => (
-    <div className="movie">
+const MovieCard = ({ img, title, year, time, genre, onClick }) => (
+    <div className="movie" onClick={onClick}>
         <div>
             <img src={img} alt="Error" className="movieImg" />
         </div>
