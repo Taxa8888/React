@@ -21,19 +21,19 @@ const App = () => {
 
         return sortBy === SORT_BY.RELEASEDATE
             ? tempMovies.sort((movieA, movieB) =>
-                  movieA.releaseDateFilm > movieB.releaseDateFilm ? 1 : -1
+                  movieA.releaseDate > movieB.releaseDate ? 1 : -1
               )
             : tempMovies.sort((movieA, movieB) =>
-                  movieA.voteAverageFilm > movieB.voteAverageFilm ? 1 : -1
+                  movieA.voteAverage > movieB.voteAverage ? 1 : -1
               );
     }, [movies, sortBy]);
 
     const handleSearch = (value) => {
         setMovies(
-            dataMovies.filter(({ titleFilm, genresFilm }) =>
+            dataMovies.filter(({ title, genres }) =>
                 searchBy === SEARCH_BY.TITLE
-                    ? checkStringMatch(titleFilm, value)
-                    : genresFilm.slice(0, 2).some((genreFilm) => checkStringMatch(genreFilm, value))
+                    ? checkStringMatch(title, value)
+                    : genres.slice(0, 2).some((genre) => checkStringMatch(genre, value))
             )
         );
     };
@@ -47,19 +47,19 @@ const App = () => {
                         onSearch={handleSearch}
                         onSearchByChange={setSearchBy}
                     />
-                    <Sort data={movies} sortBy={sortBy} onSortByChange={setSortBy} />
+                    <Sort movies={movies} sortBy={sortBy} onSortByChange={setSortBy} />
                 </>
             ) : (
                 <>
                     <HeaderDescription
-                        data={movies}
+                        movies={movies}
                         chosenMovie={chosenMovie}
                         clickSearchButton={setChosenMovie}
                     />
                     <SortDescription data={movies} chosenMovie={chosenMovie} />
                 </>
             )}
-            <Main data={sortMovies} clickChosenMovie={setChosenMovie} />
+            <Main movies={sortMovies} clickChosenMovie={setChosenMovie} />
             <Footer />
         </>
     );

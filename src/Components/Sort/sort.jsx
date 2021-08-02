@@ -3,14 +3,14 @@ import Button from '../button/button';
 import { SORT_BY } from '../app/app.constants';
 import './sort.style.scss';
 
-const Sort = ({ data, sortBy, onSortByChange }) => {
+const Sort = ({ movies, sortBy, onSortByChange }) => {
     const handleSortByButtonClick = (sortByValue) => () => {
         onSortByChange(sortByValue);
     };
 
     return (
         <div className="sortContainer">
-            <div className="sortCount">{data.length} movies found</div>
+            <div className="sortCount">{movies.length} movies found</div>
             <div className="sortBy">
                 Sort by
                 <Button

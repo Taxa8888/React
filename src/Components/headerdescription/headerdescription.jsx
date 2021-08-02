@@ -3,7 +3,10 @@ import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import Button from '../button/button';
 import './headerdescription.style.scss';
 
-const HeaderDescription = ({ chosenMovie, clickSearchButton }) => {
+const HeaderDescription = ({
+    chosenMovie: { title, releaseDate, runtime, overview, posterPath },
+    clickSearchButton,
+}) => {
     const onSearchButton = (value) => () => {
         clickSearchButton(value);
     };
@@ -22,16 +25,12 @@ const HeaderDescription = ({ chosenMovie, clickSearchButton }) => {
                     </Button>
                 </div>
                 <div className="fimlDescription">
-                    <img
-                        className="descriptionMovieImg"
-                        src={chosenMovie.posterPathFilm}
-                        alt="server disconnect"
-                    />
+                    <img className="descriptionMovieImg" src={posterPath} alt="server disconnect" />
                     <div className="aboutFilm">
-                        <p className="filmTitle">{chosenMovie.titleFilm}</p>
-                        <span className="filmDate">{chosenMovie.releaseDateFilm.slice(0, 4)}</span>
-                        <span className="filmTime">{`${chosenMovie.runtimeFilm} min`}</span>
-                        <p className="filmOverview">{chosenMovie.overviewfilm}</p>
+                        <p className="filmTitle">{title}</p>
+                        <span className="filmDate">{releaseDate.slice(0, 4)}</span>
+                        <span className="filmTime">{`${runtime} min`}</span>
+                        <p className="filmOverview">{overview}</p>
                     </div>
                 </div>
             </div>
