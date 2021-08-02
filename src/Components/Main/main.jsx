@@ -12,17 +12,17 @@ const Main = ({ movies, clickChosenMovie }) => {
                 {movies.length === 0 ? (
                     <div className="notFound">No films found</div>
                 ) : (
-                    movies.map((film) => {
-                        const { id, posterPath, title, releaseDate, runtime, genres } = film;
+                    movies.map((movie) => {
+                        const { id, posterPath, title, releaseDate, runtime, genres } = movie;
                         return (
                             <MovieCard
-                                onClick={handleChosenMovie(film)}
+                                onClick={handleChosenMovie(movie)}
                                 key={id}
                                 img={posterPath}
                                 title={title}
                                 year={releaseDate.slice(0, 4)}
-                                time={`${runtime} min`}
-                                genre={genres.slice(0, 2).toString()}
+                                time={runtime}
+                                genre={genres.join(', ')}
                             />
                         );
                     })

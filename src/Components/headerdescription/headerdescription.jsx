@@ -5,14 +5,14 @@ import './headerdescription.style.scss';
 
 const HeaderDescription = ({
     chosenMovie: { title, releaseDate, runtime, overview, posterPath },
-    clickSearchButton,
+    clickSearchButton, headerBgImg,
 }) => {
     const onSearchButton = (value) => () => {
         clickSearchButton(value);
     };
 
     return (
-        <div className="headerDescription">
+        <div className="headerDescription" style={{backgroundImage: `url(${headerBgImg})`}}>
             <div className="headerDescriptionContainer">
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>

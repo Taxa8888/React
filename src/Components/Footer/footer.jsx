@@ -2,8 +2,8 @@ import React from 'react';
 import './footer.style.scss';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 
-const Footer = () => (
-    <header className="footer">
+const Footer = ({footerBgImg}) => (
+    <header className="footer" style={{backgroundImage: `url(${footerBgImg})`}}>
         <div className="footerContainer">
             <p className="footerTitle">{MAIN_PROJECT_TITLE}</p>
         </div>

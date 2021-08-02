@@ -9,6 +9,8 @@ import dataMovies from '../../data/data.import';
 import { SEARCH_BY, SORT_BY } from './app.constants';
 import checkStringMatch from './app.helpers';
 import './app.scss';
+import headerBgImg from "../../img/header.jpg";
+import footerBgImg from "../../img/footer.jpg"
 
 const App = () => {
     const [movies, setMovies] = useState(dataMovies);
@@ -17,6 +19,7 @@ const App = () => {
     const [chosenMovie, setChosenMovie] = useState('');
 
     const sortMovies = useMemo(() => {
+
         const tempMovies = [...movies];
 
         return sortBy === SORT_BY.RELEASEDATE
@@ -33,7 +36,7 @@ const App = () => {
             dataMovies.filter(({ title, genres }) =>
                 searchBy === SEARCH_BY.TITLE
                     ? checkStringMatch(title, value)
-                    : genres.slice(0, 2).some((genre) => checkStringMatch(genre, value))
+                    : genres.some((genre) => checkStringMatch(genre, value))
             )
         );
     };
@@ -43,24 +46,29 @@ const App = () => {
             {chosenMovie === '' ? (
                 <>
                     <Header
+                        headerBgImg={headerBgImg}
                         searchBy={searchBy}
                         onSearch={handleSearch}
                         onSearchByChange={setSearchBy}
                     />
-                    <Sort movies={movies} sortBy={sortBy} onSortByChange={setSortBy} />
+                    <Sort
+                        movies={movies}
+                        sortBy={sortBy}
+                        onSortByChange={setSortBy} />
                 </>
             ) : (
                 <>
                     <HeaderDescription
-                        movies={movies}
+                        headerBgImg={headerBgImg}
                         chosenMovie={chosenMovie}
                         clickSearchButton={setChosenMovie}
                     />
-                    <SortDescription data={movies} chosenMovie={chosenMovie} />
+                    <SortDescription
+                        chosenMovie={chosenMovie} />
                 </>
             )}
             <Main movies={sortMovies} clickChosenMovie={setChosenMovie} />
-            <Footer />
+            <Footer footerBgImg={footerBgImg}  />
         </>
     );
 };

@@ -10,7 +10,7 @@ const MovieCard = ({ img, title, year, time, genre, onClick }) => (
             <h1>{title}</h1>
             <ul className="movieGen">
                 <li>Release: {year}</li>
-                <li>Duration: {time}</li>
+                <li>Duration: {time} min</li>
                 <li>Genres: {genre}</li>
             </ul>
         </div>

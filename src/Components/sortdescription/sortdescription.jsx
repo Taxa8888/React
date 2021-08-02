@@ -1,10 +1,10 @@
 import React from 'react';
 import './sortdescription.style.scss';
 
-const SortDescriprion = ({ chosenMovie: { genres } }) => (
+const SortDescription = ({ chosenMovie: { genres } }) => (
     <div className="sortDescriprionContainer">
-        <div className="sortDescriprionBy">{`Films by ${genres.slice(0, 1)} genre`}</div>
+        <div className="sortDescriprionBy">{`Films by ${genres.join(', ')} genres`}</div>
     </div>
 );
 
-export default SortDescriprion;
+export default SortDescription;

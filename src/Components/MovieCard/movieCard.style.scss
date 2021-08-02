@@ -78,6 +78,9 @@ $text-summary: 1.2rem;
     margin: 0.5rem;
     padding: 0px;
     li {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-family: $paragraph-font-family;
       font-size: $text-summary;
       color: darken($accent-color, 40%);
