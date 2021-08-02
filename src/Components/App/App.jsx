@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Header from '../header/header';
 import HeaderDescription from '../headerdescription/headerdescription';
 import Sort from '../sort/sort';
@@ -16,14 +16,17 @@ const App = () => {
     const [sortBy, setSortBy] = useState(SORT_BY.RELEASEDATE);
     const [chosenMovie, setChosenMovie] = useState('');
 
-    const sortMovies = React.useMemo(() => {
-        if (sortBy === SORT_BY.RELEASEDATE) {
-            movies.sort((a, b) => (a.releaseDateFilm > b.releaseDateFilm ? 1 : -1));
-        } else {
-            movies.sort((a, b) => (a.voteAverageFilm > b.voteAverageFilm ? 1 : -1));
-        }
-        return movies;
-    }, [sortBy]);
+    const sortMovies = useMemo(() => {
+        const tempMovies = [...movies];
+
+        return sortBy === SORT_BY.RELEASEDATE
+            ? tempMovies.sort((movieA, movieB) =>
+                  movieA.releaseDateFilm > movieB.releaseDateFilm ? 1 : -1
+              )
+            : tempMovies.sort((movieA, movieB) =>
+                  movieA.voteAverageFilm > movieB.voteAverageFilm ? 1 : -1
+              );
+    }, [movies, sortBy]);
 
     const handleSearch = (value) => {
         setMovies(

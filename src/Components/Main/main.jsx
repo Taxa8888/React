@@ -12,35 +12,17 @@ const Main = ({ data, clickChosenMovie }) => {
                 {data.length === 0 ? (
                     <div className="notFound">No films found</div>
                 ) : (
-                    data.map(
-                        ({
-                            idFilm,
-                            titleFilm,
-                            posterPathFilm,
-                            releaseDateFilm,
-                            runtimeFilm,
-                            genresFilm,
-                            overviewfilm,
-                        }) => (
-                            <MovieCard
-                                onClick={handleChosenMovie({
-                                    idFilm,
-                                    titleFilm,
-                                    posterPathFilm,
-                                    releaseDateFilm,
-                                    runtimeFilm,
-                                    genresFilm,
-                                    overviewfilm,
-                                })}
-                                key={idFilm}
-                                img={posterPathFilm}
-                                title={titleFilm}
-                                year={releaseDateFilm.slice(0, 4)}
-                                time={`${runtimeFilm} min`}
-                                genre={genresFilm.slice(0, 2).toString()}
-                            />
-                        )
-                    )
+                    data.map((film) => (
+                        <MovieCard
+                            onClick={handleChosenMovie(film)}
+                            key={film.id}
+                            img={film.posterPath}
+                            title={film.title}
+                            year={film.releaseDate.slice(0, 4)}
+                            time={`${film.runtime} min`}
+                            genre={film.genres.slice(0, 2).toString()}
+                        />
+                    ))
                 )}
             </div>
         </main>
