@@ -20,9 +20,18 @@ const Main = ({ data, clickChosenMovie }) => {
                             releaseDateFilm,
                             runtimeFilm,
                             genresFilm,
+                            overviewfilm,
                         }) => (
                             <MovieCard
-                                onClick={handleChosenMovie(idFilm)}
+                                onClick={handleChosenMovie({
+                                    idFilm,
+                                    titleFilm,
+                                    posterPathFilm,
+                                    releaseDateFilm,
+                                    runtimeFilm,
+                                    genresFilm,
+                                    overviewfilm,
+                                })}
                                 key={idFilm}
                                 img={posterPathFilm}
                                 title={titleFilm}

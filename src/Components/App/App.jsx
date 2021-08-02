@@ -16,11 +16,14 @@ const App = () => {
     const [sortBy, setSortBy] = useState(SORT_BY.RELEASEDATE);
     const [chosenMovie, setChosenMovie] = useState('');
 
-    if (sortBy === SORT_BY.RELEASEDATE) {
-        movies.sort((a, b) => (a.releaseDateFilm > b.releaseDateFilm ? 1 : -1));
-    } else {
-        movies.sort((a, b) => (a.voteAverageFilm > b.voteAverageFilm ? 1 : -1));
-    }
+    const sortMovies = React.useMemo(() => {
+        if (sortBy === SORT_BY.RELEASEDATE) {
+            movies.sort((a, b) => (a.releaseDateFilm > b.releaseDateFilm ? 1 : -1));
+        } else {
+            movies.sort((a, b) => (a.voteAverageFilm > b.voteAverageFilm ? 1 : -1));
+        }
+        return movies;
+    }, [sortBy]);
 
     const handleSearch = (value) => {
         setMovies(
@@ -35,24 +38,25 @@ const App = () => {
     return (
         <>
             {chosenMovie === '' ? (
-                <Header
-                    searchBy={searchBy}
-                    onSearch={handleSearch}
-                    onSearchByChange={setSearchBy}
-                />
+                <>
+                    <Header
+                        searchBy={searchBy}
+                        onSearch={handleSearch}
+                        onSearchByChange={setSearchBy}
+                    />
+                    <Sort data={movies} sortBy={sortBy} onSortByChange={setSortBy} />
+                </>
             ) : (
-                <HeaderDescription
-                    data={movies}
-                    chosenMovie={chosenMovie}
-                    clickSearchButton={setChosenMovie}
-                />
+                <>
+                    <HeaderDescription
+                        data={movies}
+                        chosenMovie={chosenMovie}
+                        clickSearchButton={setChosenMovie}
+                    />
+                    <SortDescription data={movies} chosenMovie={chosenMovie} />
+                </>
             )}
-            {chosenMovie === '' ? (
-                <Sort data={movies} sortBy={sortBy} onSortByChange={setSortBy} />
-            ) : (
-                <SortDescription data={movies} chosenMovie={chosenMovie} />
-            )}
-            <Main data={movies} clickChosenMovie={setChosenMovie} />
+            <Main data={sortMovies} clickChosenMovie={setChosenMovie} />
             <Footer />
         </>
     );

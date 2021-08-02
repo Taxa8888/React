@@ -3,11 +3,10 @@ import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import Button from '../button/button';
 import './headerdescription.style.scss';
 
-const HeaderDescription = ({ data, chosenMovie, clickSearchButton }) => {
+const HeaderDescription = ({ chosenMovie, clickSearchButton }) => {
     const onSearchButton = (value) => () => {
         clickSearchButton(value);
     };
-    const correctMovie = data.filter(({ idFilm }) => idFilm === chosenMovie);
 
     return (
         <div className="headerDescription">
@@ -25,16 +24,14 @@ const HeaderDescription = ({ data, chosenMovie, clickSearchButton }) => {
                 <div className="fimlDescription">
                     <img
                         className="descriptionMovieImg"
-                        src={correctMovie[0].posterPathFilm}
+                        src={chosenMovie.posterPathFilm}
                         alt="server disconnect"
                     />
                     <div className="aboutFilm">
-                        <p className="filmTitle">{correctMovie[0].titleFilm}</p>
-                        <span className="filmDate">
-                            {correctMovie[0].releaseDateFilm.slice(0, 4)}
-                        </span>
-                        <span className="filmTime">{`${correctMovie[0].runtimeFilm} min`}</span>
-                        <p className="filmOverview">{correctMovie[0].overviewfilm}</p>
+                        <p className="filmTitle">{chosenMovie.titleFilm}</p>
+                        <span className="filmDate">{chosenMovie.releaseDateFilm.slice(0, 4)}</span>
+                        <span className="filmTime">{`${chosenMovie.runtimeFilm} min`}</span>
+                        <p className="filmOverview">{chosenMovie.overviewfilm}</p>
                     </div>
                 </div>
             </div>
