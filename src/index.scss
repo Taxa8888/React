@@ -1,17 +1,13 @@
+:root {
+  font-size: 10px;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
-body {
-  width: 100%;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
+#root {
+  max-width: 128rem;
   margin: 0 auto;
 }

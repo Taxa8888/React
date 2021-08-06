@@ -1,0 +1,54 @@
+.sortContainer {
+    width: 100%;
+    height: 5rem;
+    background-color: darkgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sortCount {
+    font: {
+        family: Georgia;
+        style: normal;
+        size: 1.2rem;
+        weight: 700;
+    }
+    color: black;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+}
+
+.sortBy {
+    font: {
+        family: Georgia;
+        style: normal;
+        size: 1.2rem;
+        weight: 700;
+    }
+    color: black;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+}
+
+.sortButton {
+    background: none;
+    margin: 0 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.sortBy button:hover {
+    color: #ffffff;
+}
+
+.activeSortButton {
+    font-weight: 600;
+    color: #000000;
+    border-bottom: 0.1rem solid black;
+}

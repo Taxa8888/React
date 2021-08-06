@@ -1,0 +1,79 @@
+.headerDescription {
+    width: 100%;
+    height: 36rem;
+    display: flex;
+}
+
+.headerDescriptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 4rem;
+}
+
+.headerDescriptionTitle {
+    font: {
+        family: Georgia;
+        style: normal;
+        size: 2.4rem;
+        weight: 700;
+    }
+    color: azure;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+    margin-bottom: 2rem;
+}
+
+.navElements {
+    display: flex;
+}
+
+.fimlDescription {
+    display: flex;
+}
+
+.descriptionMovieImg {
+    width: 18rem;
+    height: 25rem;
+}
+
+.aboutFilm {
+    margin-left: 6rem;
+}
+
+.filmTitle {
+    font: {
+        family: Georgia;
+        style: normal;
+        size: 2.8rem;
+        weight: 700;
+    }
+    color: gray;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+    margin-bottom: 2rem;
+}
+
+.filmDate,
+.filmTime,
+.filmOverview {
+    font: {
+        family: Georgia;
+        style: normal;
+        size: 1.4rem;
+        weight: 700;
+    }
+    color: azure;
+    line-height: 110%;
+    letter-spacing: 0.175rem;
+    margin-bottom: 2rem;
+}
+
+.filmDate {
+    margin-right: 2rem;
+}
+
+.filmOverview {
+    margin-top: 2rem;
+    width: 50rem;
+}
