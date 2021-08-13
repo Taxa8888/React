@@ -6,23 +6,22 @@ import SortDescription from '../sortdescription/sortdescription';
 import Main from '../main/main';
 import Footer from '../footer/footer';
 import dataMovies from '../../data/data.import';
-import { SEARCH_BY, SORT_BY } from './app.constants';
+import {SortBy, SearchBy} from './app.types'
 import checkStringMatch from './app.helpers';
 import './app.scss';
-import headerBgImg from "../../img/header.jpg";
 import footerBgImg from "../../img/footer.jpg"
 
 const App = () => {
     const [movies, setMovies] = useState(dataMovies);
-    const [searchBy, setSearchBy] = useState(SEARCH_BY.TITLE);
-    const [sortBy, setSortBy] = useState(SORT_BY.RELEASEDATE);
+    const [searchBy, setSearchBy] = useState(SearchBy.TITLE);
+    const [sortBy, setSortBy] = useState(SortBy.RELEASEDATE);
     const [chosenMovie, setChosenMovie] = useState('');
 
     const sortMovies = useMemo(() => {
 
         const tempMovies = [...movies];
 
-        return sortBy === SORT_BY.RELEASEDATE
+        return sortBy === SortBy.RELEASEDATE
             ? tempMovies.sort((movieA, movieB) =>
                   movieA.releaseDate > movieB.releaseDate ? 1 : -1
               )
@@ -31,11 +30,11 @@ const App = () => {
               );
     }, [movies, sortBy]);
 
-    const handleSearch = (value) => {
+    const handleSearch = (value: string): void => {
         setMovies(
             dataMovies.filter(({ title, genres }) =>
-                searchBy === SEARCH_BY.TITLE
-                    ? checkStringMatch(title, value)
+                searchBy === SearchBy.TITLE
+                    ? checkStringMatch(title , value)
                     : genres.some((genre) => checkStringMatch(genre, value))
             )
         );
@@ -46,7 +45,6 @@ const App = () => {
             {chosenMovie === '' ? (
                 <>
                     <Header
-                        headerBgImg={headerBgImg}
                         searchBy={searchBy}
                         onSearch={handleSearch}
                         onSearchByChange={setSearchBy}
