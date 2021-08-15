@@ -6,10 +6,8 @@ import SortDescription from '../sortdescription/sortdescription';
 import Main from '../main/main';
 import Footer from '../footer/footer';
 import dataMovies from '../../data/data.import';
-import {SortBy, SearchBy} from './app.types'
+import { SortBy, SearchBy } from './app.types';
 import checkStringMatch from './app.helpers';
-import './app.scss';
-import footerBgImg from "../../img/footer.jpg"
 
 const App = () => {
     const [movies, setMovies] = useState(dataMovies);
@@ -18,7 +16,6 @@ const App = () => {
     const [chosenMovie, setChosenMovie] = useState('');
 
     const sortMovies = useMemo(() => {
-
         const tempMovies = [...movies];
 
         return sortBy === SortBy.RELEASEDATE
@@ -34,7 +31,7 @@ const App = () => {
         setMovies(
             dataMovies.filter(({ title, genres }) =>
                 searchBy === SearchBy.TITLE
-                    ? checkStringMatch(title , value)
+                    ? checkStringMatch(title, value)
                     : genres.some((genre) => checkStringMatch(genre, value))
             )
         );
@@ -49,24 +46,19 @@ const App = () => {
                         onSearch={handleSearch}
                         onSearchByChange={setSearchBy}
                     />
-                    <Sort
-                        movies={movies}
-                        sortBy={sortBy}
-                        onSortByChange={setSortBy} />
+                    <Sort movies={movies} sortBy={sortBy} onSortByChange={setSortBy} />
                 </>
             ) : (
                 <>
                     <HeaderDescription
-                        headerBgImg={headerBgImg}
                         chosenMovie={chosenMovie}
                         clickSearchButton={setChosenMovie}
                     />
-                    <SortDescription
-                        chosenMovie={chosenMovie} />
+                    <SortDescription chosenMovie={chosenMovie} />
                 </>
             )}
             <Main movies={sortMovies} clickChosenMovie={setChosenMovie} />
-            <Footer footerBgImg={footerBgImg}  />
+            <Footer />
         </>
     );
 };

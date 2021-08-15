@@ -1,18 +1,19 @@
 import React from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
+import { HEADER_BG_IMAGE } from '../header/header.constants';
 import Button from '../button/button';
 import './headerdescription.style.scss';
 
 const HeaderDescription = ({
     chosenMovie: { title, releaseDate, runtime, overview, posterPath },
-    clickSearchButton, headerBgImg,
+    clickSearchButton,
 }) => {
-    const onSearchButton = (value) => () => {
+    const onSearchButton = (value: string) => () => {
         clickSearchButton(value);
     };
 
     return (
-        <div className="headerDescription" style={{backgroundImage: `url(${headerBgImg})`}}>
+        <div className="headerDescription" style={HEADER_BG_IMAGE}>
             <div className="headerDescriptionContainer">
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>

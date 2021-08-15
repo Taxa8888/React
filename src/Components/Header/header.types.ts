@@ -1,4 +1,4 @@
-import { SearchBy } from "../App/app.types";
+import { SearchBy } from "../app/app.types";
 
 export interface HeaderProps {
     searchBy: SearchBy;

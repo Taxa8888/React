@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../button/button';
 import './search.style.scss';
-import { SEARCH_BY } from '../app/app.constants';
+import { SearchBy } from '../app/app.types';
 
 const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
     const [value, setValue] = useState('');
@@ -25,14 +25,14 @@ const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
             <div className="searchOption">
                 <p>SEARCH BY</p>
                 <Button
-                    className={`button ${searchBy === SEARCH_BY.TITLE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SEARCH_BY.TITLE)}
+                    className={`button ${searchBy === SearchBy.TITLE ? 'active' : ''}`}
+                    onClick={handleSearchByButtonClick(SearchBy.TITLE)}
                 >
                     Title
                 </Button>
                 <Button
-                    className={`button ${searchBy === SEARCH_BY.GENRE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SEARCH_BY.GENRE)}
+                    className={`button ${searchBy === SearchBy.GENRE ? 'active' : ''}`}
+                    onClick={handleSearchByButtonClick(SearchBy.GENRE)}
                 >
                     Genre
                 </Button>

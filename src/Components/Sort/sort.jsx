@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../button/button';
-import { SORT_BY } from '../app/app.constants';
+import { SortBy } from '../app/app.types';
 import './sort.style.scss';
 
 const Sort = ({ movies, sortBy, onSortByChange }) => {
@@ -15,15 +15,15 @@ const Sort = ({ movies, sortBy, onSortByChange }) => {
                 Sort by
                 <Button
                     className={`sortButton ${
-                        sortBy === SORT_BY.RELEASEDATE ? 'activeSortButton' : ''
+                        sortBy === SortBy.RELEASEDATE ? 'activeSortButton' : ''
                     }`}
-                    onClick={handleSortByButtonClick(SORT_BY.RELEASEDATE)}
+                    onClick={handleSortByButtonClick(SortBy.RELEASEDATE)}
                 >
                     release date
                 </Button>
                 <Button
-                    className={`sortButton ${sortBy === SORT_BY.RATING ? 'activeSortButton' : ''}`}
-                    onClick={handleSortByButtonClick(SORT_BY.RATING)}
+                    className={`sortButton ${sortBy === SortBy.RATING ? 'activeSortButton' : ''}`}
+                    onClick={handleSortByButtonClick(SortBy.RATING)}
                 >
                     rating
                 </Button>
