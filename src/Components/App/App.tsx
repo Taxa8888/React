@@ -1,19 +1,20 @@
 import React, { useState, useMemo, ReactElement } from 'react';
-import Header from '../header/header';
-import HeaderDescription from '../headerdescription/headerdescription';
-import Sort from '../sort/sort';
-import SortDescription from '../sortdescription/sortdescription';
-import Main from '../main/main';
-import Footer from '../footer/footer';
+import { Header } from '../header/header';
+import { HeaderDescription } from '../headerdescription/headerdescription';
+import { Sort } from '../sort/sort';
+import { SortDescription } from '../sortdescription/sortdescription';
+import { Main } from '../main/main';
+import { Footer } from '../footer/footer';
 import { dataMovies } from '../../data/data.import';
 import { SortBy, SearchBy } from './app.types';
+import { DataMovie } from '../../data/data.types';
 import checkStringMatch from './app.helpers';
 
-const App = (): ReactElement => {
+export const App = (): ReactElement => {
     const [movies, setMovies] = useState(dataMovies);
     const [searchBy, setSearchBy] = useState(SearchBy.TITLE);
     const [sortBy, setSortBy] = useState(SortBy.RELEASEDATE);
-    const [chosenMovie, setChosenMovie] = useState(null);
+    const [chosenMovie, setChosenMovie] = useState<DataMovie>();
 
     const sortMovies = useMemo(() => {
         const tempMovies = [...movies];
@@ -39,7 +40,7 @@ const App = (): ReactElement => {
 
     return (
         <>
-            {chosenMovie === null ? (
+            {!chosenMovie ? (
                 <>
                     <Header
                         searchBy={searchBy}
@@ -62,5 +63,3 @@ const App = (): ReactElement => {
         </>
     );
 };
-
-export default App;

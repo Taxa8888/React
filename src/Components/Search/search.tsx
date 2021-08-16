@@ -1,17 +1,23 @@
-import React, { FC, ReactElement, useState } from 'react';
-import Button from '../button/button';
-import './search.style.scss';
+import React, { ChangeEvent, FC, ReactElement, useState } from 'react';
+import { Button } from '../button/button';
 import { SearchBy } from '../app/app.types';
 import { SearchProps } from './search.types';
+import './search.style.scss';
 
-const Search: FC<SearchProps> = ({ title, onSearch, searchBy, onSearchByChange }): ReactElement => {
+export const Search: FC<SearchProps> = ({
+    title,
+    onSearch,
+    searchBy,
+    onSearchByChange,
+}): ReactElement => {
     const [value, setValue] = useState('');
 
     const handleSearchByButtonClick = (searchByValue: SearchBy) => (): void => {
         onSearchByChange(searchByValue);
     };
 
-    const handleInputChange = (event) => setValue(event.target.value);
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
+        setValue(event.target.value);
 
     const handleSearchButtonClick = () => onSearch(value);
 
@@ -48,5 +54,3 @@ const Search: FC<SearchProps> = ({ title, onSearch, searchBy, onSearchByChange }
         </div>
     );
 };
-
-export default Search;

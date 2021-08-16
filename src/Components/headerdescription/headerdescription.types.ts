@@ -1,6 +1,6 @@
-import { DataMovie } from '../../data/data.import';
+import { DataMovie } from '../../data/data.types';
 
 export interface HeaderDescriptionProps {
     chosenMovie: DataMovie;
-    clickSearchButton(value: string): void;
+    clickSearchButton(value?: DataMovie): void;
 }

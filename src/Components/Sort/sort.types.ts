@@ -1,5 +1,5 @@
 import { SortBy } from '../app/app.types';
-import { DataMovie } from './../../data/data.import';
+import { DataMovie } from './../../data/data.types';
 
 export interface SortProps {
     movies: DataMovie[];

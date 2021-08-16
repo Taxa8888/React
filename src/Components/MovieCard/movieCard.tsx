@@ -1,8 +1,8 @@
 import React, { FC, ReactElement } from 'react';
-import './movieCard.style.scss';
 import { MovieCardProps } from './movieCard.types';
+import './movieCard.style.scss';
 
-const MovieCard: FC<MovieCardProps> = ({
+export const MovieCard: FC<MovieCardProps> = ({
     img,
     title,
     year,
@@ -24,5 +24,3 @@ const MovieCard: FC<MovieCardProps> = ({
         </div>
     </div>
 );
-
-export default MovieCard;

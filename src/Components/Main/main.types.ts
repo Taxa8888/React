@@ -1,4 +1,4 @@
-import { DataMovie } from '../../data/data.import';
+import { DataMovie } from '../../data/data.types';
 
 export interface MainProps {
     movies: DataMovie[];

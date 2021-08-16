@@ -1,13 +1,14 @@
 import React, { FC, ReactElement } from 'react';
-import MovieCard from '../movieCard/movieCard';
-import './main.style.scss';
+import { MovieCard } from '../movieCard/movieCard';
 import { MainProps } from './main.types';
-import { DataMovie } from '../../data/data.import';
+import { DataMovie } from '../../data/data.types';
+import './main.style.scss';
 
-const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
+export const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
     const handleChosenMovie = (value: DataMovie) => (): void => {
         clickChosenMovie(value);
     };
+
     return (
         <main className="main">
             <div className="mainContainer">
@@ -33,5 +34,3 @@ const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
         </main>
     );
 };
-
-export default Main;

@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from 'react';
-import Button from '../button/button';
+import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
-import './sort.style.scss';
 import { SortProps } from './sort.types';
+import './sort.style.scss';
 
-const Sort: FC<SortProps> = ({ movies, sortBy, onSortByChange }): ReactElement => {
+export const Sort: FC<SortProps> = ({ movies, sortBy, onSortByChange }): ReactElement => {
     const handleSortByButtonClick = (sortByValue: SortBy) => (): void => {
         onSortByChange(sortByValue);
     };
@@ -32,4 +32,3 @@ const Sort: FC<SortProps> = ({ movies, sortBy, onSortByChange }): ReactElement =
         </div>
     );
 };
-export default Sort;
