@@ -2,10 +2,10 @@ import React, { FC, ReactElement } from 'react';
 import MovieCard from '../movieCard/movieCard';
 import './main.style.scss';
 import { MainProps } from './main.types';
-import { DataMoviesTypes } from '../../data/data.import';
+import { DataMovie } from '../../data/data.import';
 
 const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
-    const handleChosenMovie = (value: DataMoviesTypes) => () => {
+    const handleChosenMovie = (value: DataMovie) => (): void => {
         clickChosenMovie(value);
     };
     return (
@@ -14,7 +14,7 @@ const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
                 {movies.length === 0 ? (
                     <div className="notFound">No films found</div>
                 ) : (
-                    movies.map((movie: DataMoviesTypes) => {
+                    movies.map((movie: DataMovie) => {
                         const { id, posterPath, title, releaseDate, runtime, genres } = movie;
                         return (
                             <MovieCard

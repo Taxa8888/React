@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import Button from '../button/button';
 import './headerdescription.style.scss';
+import { HeaderDescriptionProps } from './headerdescription.types';
+import { DataMovie } from '../../data/data.import';
 
-const HeaderDescription = ({
+const HeaderDescription: FC<HeaderDescriptionProps> = ({
     chosenMovie: { title, releaseDate, runtime, overview, posterPath },
     clickSearchButton,
-}) => {
-    const onSearchButton = (value: string) => () => {
+}): ReactElement => {
+    const onSearchButton = (value) => (): void => {
         clickSearchButton(value);
     };
 
@@ -18,7 +20,7 @@ const HeaderDescription = ({
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={onSearchButton('')}
+                        onClick={onSearchButton(null)}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >

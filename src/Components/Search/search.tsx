@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import Button from '../button/button';
 import './search.style.scss';
 import { SearchBy } from '../app/app.types';
+import { SearchProps } from './search.types';
 
-const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
+const Search: FC<SearchProps> = ({ title, onSearch, searchBy, onSearchByChange }): ReactElement => {
     const [value, setValue] = useState('');
 
-    const handleSearchByButtonClick = (searchByValue) => () => {
+    const handleSearchByButtonClick = (searchByValue: SearchBy) => (): void => {
         onSearchByChange(searchByValue);
     };
 

@@ -1,6 +1,6 @@
-import { DataMoviesTypes } from '../../data/data.import';
+import { DataMovie } from '../../data/data.import';
 
 export interface MainProps {
-    movies: DataMoviesTypes;
-    clickChosenMovie(value: DataMoviesTypes): void;
+    movies: DataMovie[];
+    clickChosenMovie(value: DataMovie): void;
 }

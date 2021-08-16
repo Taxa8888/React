@@ -9,7 +9,7 @@ module.exports = (env, { mode }) => {
     return {
         context: path.resolve(__dirname, './'),
         mode: 'development',
-        entry: './src/index.jsx',
+        entry: './src/index.tsx',
         output: {
             filename: `${filename('js')}`,
             path: path.resolve(__dirname, 'build'),

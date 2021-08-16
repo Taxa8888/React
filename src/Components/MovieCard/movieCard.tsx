@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import './movieCard.style.scss';
+import { MovieCardProps } from './movieCard.types';
 
-const MovieCard = ({ img, title, year, time, genre, onClick }) => (
+const MovieCard: FC<MovieCardProps> = ({
+    img,
+    title,
+    year,
+    time,
+    genre,
+    onClick,
+}): ReactElement => (
     <div className="movie" onClick={onClick}>
         <div>
             <img src={img} alt="Error" className="movieImg" />

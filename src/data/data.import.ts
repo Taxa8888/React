@@ -1,6 +1,6 @@
 import movies from './mov.json';
 
-export interface DataMoviesTypes {
+export interface DataMovie {
     id: number;
     title: string;
     voteAverage: number;
@@ -11,7 +11,7 @@ export interface DataMoviesTypes {
     overview: string;
 }
 
-export const dataMovies: DataMoviesTypes[] = movies.map((movie) => ({
+export const dataMovies: DataMovie[] = movies.map((movie) => ({
     id: movie.id,
     title: movie.title,
     voteAverage: movie.vote_average,
