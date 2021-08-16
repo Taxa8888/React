@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
-import Button from '../button/button';
+import { HEADER_BG_IMAGE } from '../header/header.constants';
+import { Button } from '../button/button';
+import { HeaderDescriptionProps } from './headerdescription.types';
 import './headerdescription.style.scss';
 
-const HeaderDescription = ({
+export const HeaderDescription: FC<HeaderDescriptionProps> = ({
     chosenMovie: { title, releaseDate, runtime, overview, posterPath },
-    clickSearchButton, headerBgImg,
-}) => {
-    const onSearchButton = (value) => () => {
-        clickSearchButton(value);
+    clickSearchButton,
+}): ReactElement => {
+    const onSearchButton = () => () => {
+        clickSearchButton();
     };
 
     return (
-        <div className="headerDescription" style={{backgroundImage: `url(${headerBgImg})`}}>
+        <div className="headerDescription" style={HEADER_BG_IMAGE}>
             <div className="headerDescriptionContainer">
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={onSearchButton('')}
+                        onClick={onSearchButton()}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >
@@ -37,5 +39,3 @@ const HeaderDescription = ({
         </div>
     );
 };
-
-export default HeaderDescription;

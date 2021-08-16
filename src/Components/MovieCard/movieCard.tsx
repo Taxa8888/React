@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
+import { MovieCardProps } from './movieCard.types';
 import './movieCard.style.scss';
 
-const MovieCard = ({ img, title, year, time, genre, onClick }) => (
+export const MovieCard: FC<MovieCardProps> = ({
+    img,
+    title,
+    year,
+    time,
+    genre,
+    onClick,
+}): ReactElement => (
     <div className="movie" onClick={onClick}>
         <div>
             <img src={img} alt="Error" className="movieImg" />
@@ -16,5 +24,3 @@ const MovieCard = ({ img, title, year, time, genre, onClick }) => (
         </div>
     </div>
 );
-
-export default MovieCard;

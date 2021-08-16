@@ -1,21 +1,20 @@
-import React from 'react';
-import Search from '../search/search';
-import './header.style.scss';
+import React, { ReactElement, FC } from 'react';
+import { Search } from '../search/search';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
+import { HeaderProps } from './header.types';
+import { HEADER_BG_IMAGE } from './header.constants';
+import './header.style.scss';
 
-const Header = ({ searchMovies, searchBy, onSearch, onSearchByChange, headerBgImg }) => (
-    <header className="header" style={{backgroundImage: `url(${headerBgImg})`}}>
+export const Header: FC<HeaderProps> = ({ searchBy, onSearch, onSearchByChange }): ReactElement => (
+    <header className="header" style={HEADER_BG_IMAGE}>
         <div className="headerContainer">
             <p className="headerTitle">{MAIN_PROJECT_TITLE}</p>
             <Search
                 searchBy={searchBy}
                 title="FIND YOUR MOVIE"
-                searchMovies={searchMovies}
                 onSearch={onSearch}
                 onSearchByChange={onSearchByChange}
             />
         </div>
     </header>
 );
-
-export default Header;

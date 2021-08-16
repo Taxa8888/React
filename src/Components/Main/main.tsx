@@ -1,18 +1,21 @@
-import React from 'react';
-import MovieCard from '../movieCard/movieCard';
+import React, { FC, ReactElement } from 'react';
+import { MovieCard } from '../movieCard/movieCard';
+import { MainProps } from './main.types';
+import { DataMovie } from '../../data/data.types';
 import './main.style.scss';
 
-const Main = ({ movies, clickChosenMovie }) => {
-    const handleChosenMovie = (value) => () => {
+export const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
+    const handleChosenMovie = (value: DataMovie) => (): void => {
         clickChosenMovie(value);
     };
+
     return (
         <main className="main">
             <div className="mainContainer">
                 {movies.length === 0 ? (
                     <div className="notFound">No films found</div>
                 ) : (
-                    movies.map((movie) => {
+                    movies.map((movie: DataMovie) => {
                         const { id, posterPath, title, releaseDate, runtime, genres } = movie;
                         return (
                             <MovieCard
@@ -31,5 +34,3 @@ const Main = ({ movies, clickChosenMovie }) => {
         </main>
     );
 };
-
-export default Main;

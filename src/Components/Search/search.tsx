@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import Button from '../button/button';
+import React, { ChangeEvent, FC, ReactElement, useState } from 'react';
+import { Button } from '../button/button';
+import { SearchBy } from '../app/app.types';
+import { SearchProps } from './search.types';
 import './search.style.scss';
-import { SEARCH_BY } from '../app/app.constants';
 
-const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
+export const Search: FC<SearchProps> = ({
+    title,
+    onSearch,
+    searchBy,
+    onSearchByChange,
+}): ReactElement => {
     const [value, setValue] = useState('');
 
-    const handleSearchByButtonClick = (searchByValue) => () => {
+    const handleSearchByButtonClick = (searchByValue: SearchBy) => (): void => {
         onSearchByChange(searchByValue);
     };
 
-    const handleInputChange = (event) => setValue(event.target.value);
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
+        setValue(event.target.value);
 
     const handleSearchButtonClick = () => onSearch(value);
 
@@ -25,14 +32,14 @@ const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
             <div className="searchOption">
                 <p>SEARCH BY</p>
                 <Button
-                    className={`button ${searchBy === SEARCH_BY.TITLE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SEARCH_BY.TITLE)}
+                    className={`button ${searchBy === SearchBy.TITLE ? 'active' : ''}`}
+                    onClick={handleSearchByButtonClick(SearchBy.TITLE)}
                 >
                     Title
                 </Button>
                 <Button
-                    className={`button ${searchBy === SEARCH_BY.GENRE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SEARCH_BY.GENRE)}
+                    className={`button ${searchBy === SearchBy.GENRE ? 'active' : ''}`}
+                    onClick={handleSearchByButtonClick(SearchBy.GENRE)}
                 >
                     Genre
                 </Button>
@@ -47,5 +54,3 @@ const Search = ({ title, onSearch, searchBy, onSearchByChange }) => {
         </div>
     );
 };
-
-export default Search;
