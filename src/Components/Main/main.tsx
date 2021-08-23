@@ -1,13 +1,25 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { MainProps } from './main.types';
 import { DataMovie } from '../../data/data.types';
 import './main.style.scss';
+import { loadMovies } from '../../store/movies/movies.reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import noImage from '../../img/no_image.png';
 
-export const Main: FC<MainProps> = ({ movies, clickChosenMovie }): ReactElement => {
+export const Main: FC<MainProps> = ({ clickChosenMovie }): ReactElement => {
+    const movies = useSelector((store) => store.movies);
+    const dispatch = useDispatch();
+
+    console.log(movies);
+
     const handleChosenMovie = (value: DataMovie) => (): void => {
         clickChosenMovie(value);
     };
+
+    useEffect(() => {
+        dispatch(loadMovies({ limit: 16, offset: 0 }));
+    }, [dispatch]);
 
     return (
         <main className="main">

@@ -1,8 +1,7 @@
 import { DataMovie, MockDataMovie } from './data.types';
-import movies from './mov.json';
 
-export const dataMovies: DataMovie[] = movies.map(
-    ({ id, title, genres, runtime, overview, ...movie }: MockDataMovie) => ({
+export const mapMovies = (movies: MockDataMovie): DataMovie[] =>
+    movies.map(({ id, title, genres, runtime, overview, ...movie }: MockDataMovie) => ({
         id,
         title,
         voteAverage: movie.vote_average,
@@ -11,5 +10,4 @@ export const dataMovies: DataMovie[] = movies.map(
         genres,
         runtime,
         overview,
-    })
-);
+    }));

@@ -5,13 +5,14 @@ import { Sort } from '../sort/sort';
 import { SortDescription } from '../sortdescription/sortdescription';
 import { Main } from '../main/main';
 import { Footer } from '../footer/footer';
-import { dataMovies } from '../../data/data.import';
 import { SortBy, SearchBy } from './app.types';
 import { DataMovie } from '../../data/data.types';
 import checkStringMatch from './app.helpers';
+import { store } from '../../store/store';
+import { Provider } from 'react-redux';
 
 export const App = (): ReactElement => {
-    const [movies, setMovies] = useState(dataMovies);
+    const [movies, setMovies] = useState([]);
     const [searchBy, setSearchBy] = useState(SearchBy.TITLE);
     const [sortBy, setSortBy] = useState(SortBy.RELEASEDATE);
     const [chosenMovie, setChosenMovie] = useState<DataMovie>();
@@ -30,7 +31,7 @@ export const App = (): ReactElement => {
 
     const handleSearch = (value: string): void => {
         setMovies(
-            dataMovies.filter(({ title, genres }) =>
+            [].filter(({ title, genres }) =>
                 searchBy === SearchBy.TITLE
                     ? checkStringMatch(title, value)
                     : genres.some((genre) => checkStringMatch(genre, value))
@@ -39,7 +40,7 @@ export const App = (): ReactElement => {
     };
 
     return (
-        <>
+        <Provider store={store}>
             {!chosenMovie ? (
                 <>
                     <Header
@@ -58,8 +59,8 @@ export const App = (): ReactElement => {
                     <SortDescription chosenMovie={chosenMovie} />
                 </>
             )}
-            <Main movies={sortMovies} clickChosenMovie={setChosenMovie} />
+            <Main clickChosenMovie={setChosenMovie} />
             <Footer />
-        </>
+        </Provider>
     );
 };
