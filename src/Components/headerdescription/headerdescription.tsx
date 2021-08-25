@@ -1,22 +1,26 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
-import { HeaderDescriptionProps } from './headerdescription.types';
 import './headerdescription.style.scss';
 import noImage from '../../img/no_image.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleIsRoute } from '../../store/movies/movies.reducer';
 
-export const HeaderDescription: FC<HeaderDescriptionProps> = (chosenMovie): ReactElement => {
-    console.log(chosenMovie);
-
+export const HeaderDescription = (): ReactElement => {
+    const chosenMovie = useSelector((store) => store.chosenMovie);
+    const dispatch = useDispatch();
+    const { title, posterPath, releaseDate, runtime, overview } = chosenMovie;
+    const onReturnToMain = () => {
+        dispatch(toggleIsRoute());
+    };
     return (
         <div className="headerDescription" style={HEADER_BG_IMAGE}>
             <div className="headerDescriptionContainer">
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={() => console.log('fine')}
+                        onClick={onReturnToMain}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >
@@ -26,17 +30,17 @@ export const HeaderDescription: FC<HeaderDescriptionProps> = (chosenMovie): Reac
                 <div className="fimlDescription">
                     <img
                         className="descriptionMovieImg"
-                        src={chosenMovie.posterPath}
+                        src={posterPath}
                         onError={(e) => {
-                            e.target.src = noImage;
+                            e.currentTarget.src = noImage;
                         }}
-                        alt={chosenMovie.title}
+                        alt={title}
                     />
                     <div className="aboutFilm">
-                        <p className="filmTitle">{chosenMovie.title}</p>
-                        <span className="filmDate">{chosenMovie.releaseDate.slice(0, 4)}</span>
-                        <span className="filmTime">{`${chosenMovie.runtime} min`}</span>
-                        <p className="filmOverview">{chosenMovie.overview}</p>
+                        <p className="filmTitle">{title}</p>
+                        <span className="filmDate">{releaseDate.slice(0, 4)}</span>
+                        <span className="filmTime">{`${runtime} min`}</span>
+                        <p className="filmOverview">{overview}</p>
                     </div>
                 </div>
             </div>

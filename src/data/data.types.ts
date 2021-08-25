@@ -1,3 +1,11 @@
+export interface ChosenDataMovie {
+    title: string;
+    releaseDate: string;
+    posterPath: string;
+    genres: string[];
+    runtime: number;
+    overview: string;
+}
 export interface DataMovie {
     id: number;
     title: string;

@@ -5,26 +5,25 @@ import { Sort } from '../sort/sort';
 import { SortDescription } from '../sortdescription/sortdescription';
 import { Main } from '../main/main';
 import { Footer } from '../footer/footer';
-import { store } from '../../store/store';
-import { Provider, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const App = (): ReactElement => {
-    let chosenMovie = useSelector((store) => store.chosenMovie);
+    const isRoute: Boolean = useSelector((store) => store.isRoute);
     return (
-        <Provider store={store}>
-            {!chosenMovie ? (
+        <>
+            {isRoute ? (
                 <>
                     <Header />
                     <Sort />
                 </>
             ) : (
                 <>
-                    <HeaderDescription chosenMovie={chosenMovie} />
-                    <SortDescription chosenMovie={chosenMovie} />
+                    <HeaderDescription />
+                    <SortDescription />
                 </>
             )}
             <Main />
             <Footer />
-        </Provider>
+        </>
     );
 };

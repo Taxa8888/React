@@ -17,7 +17,7 @@ export const MovieCard: FC<MovieCardProps> = ({
             <img
                 src={img}
                 onError={(e) => {
-                    e.target.src = noImage;
+                    e.currentTarget.src = noImage;
                 }}
                 alt={altTitle}
                 className="movieImg"

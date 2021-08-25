@@ -1,12 +1,13 @@
 import { SearchBy, SortBy } from '../../Components/app/app.types';
-import { mapMovies } from '../../data/data.import';
+import { mapChosenMovie, mapMovies } from '../../data/data.import';
+import { initialStateField } from '../store.types';
 
-const initialState = {
+export const initialState: initialStateField = {
     movies: [],
-    chosenMovie: [],
+    chosenMovie: undefined,
     searchBy: SearchBy.TITLE,
     sortBy: SortBy.RELEASEDATE,
-    searchInputValue: '',
+    isRoute: true,
 };
 
 export const moviesReducer = (state = initialState, action) => {
@@ -22,7 +23,9 @@ export const moviesReducer = (state = initialState, action) => {
         case 'TOGGLE_SEARCH_BY_OPTION':
             return { ...state, searchBy: action.payload.value };
         case 'GET_MOVIE_BY_ID':
-            return { ...state, chosenMovie: action.payload };
+            return { ...state, chosenMovie: mapChosenMovie(action.payload), isRoute: false };
+        case 'RETURN_IS_ROUTE':
+            return { ...state, isRoute: true };
         default:
             return state;
     }
@@ -79,5 +82,11 @@ export const getMovieById = ({ id }) => {
         return fetch(`https://reactjs-cdp.herokuapp.com/movies/${id}`)
             .then((response) => response.json())
             .then((data) => dispatch({ type: 'GET_MOVIE_BY_ID', payload: data }));
+    };
+};
+
+export const toggleIsRoute = () => {
+    return (dispatch) => {
+        dispatch({ type: 'RETURN_IS_ROUTE' });
     };
 };

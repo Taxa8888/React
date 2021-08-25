@@ -1,12 +1,11 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
-import { MainProps } from './main.types';
 import { DataMovie } from '../../data/data.types';
 import './main.style.scss';
 import { getMovieById, loadMovies } from '../../store/movies/movies.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const Main: FC<MainProps> = (): ReactElement => {
+export const Main = (): ReactElement => {
     const movies = useSelector((store) => store.movies);
     const dispatch = useDispatch();
 

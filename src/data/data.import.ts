@@ -1,4 +1,4 @@
-import { DataMovie, MockDataMovie } from './data.types';
+import { ChosenDataMovie, DataMovie, MockDataMovie } from './data.types';
 
 export const mapMovies = (movies: MockDataMovie): DataMovie[] =>
     movies.map(({ id, title, genres, runtime, overview, ...movie }: MockDataMovie) => ({
@@ -11,3 +11,21 @@ export const mapMovies = (movies: MockDataMovie): DataMovie[] =>
         runtime,
         overview,
     }));
+
+export const mapChosenMovie = ({
+    title,
+    poster_path,
+    release_date,
+    genres,
+    runtime,
+    overview,
+}: MockDataMovie): ChosenDataMovie => {
+    return {
+        title,
+        posterPath: poster_path,
+        releaseDate: release_date,
+        genres,
+        runtime,
+        overview,
+    };
+};
