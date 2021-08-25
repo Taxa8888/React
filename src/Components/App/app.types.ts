@@ -1,9 +1,9 @@
 export enum SortBy {
     RELEASEDATE = 'release date',
-    RATING = 'rating'
+    RATING = 'rating',
 }
 
-export enum SearchBy  {
-    TITLE = 'Title',
-     GENRE = 'Genre'
-    }
+export enum SearchBy {
+    TITLE = 'title',
+    GENRE = 'genres',
+}
