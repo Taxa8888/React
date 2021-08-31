@@ -3,30 +3,37 @@ import { Button } from '../button/button';
 import { SearchBy } from '../app/app.types';
 import { SearchProps } from './search.types';
 import './search.style.scss';
-import { searchMovies, toggleSearchByOption } from '../../store/movies/movies.reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+    changeSearchInput,
+    searchMovies,
+    toggleSearchOption,
+} from '../../store/movies/movies.actions';
 
 export const Search: FC<SearchProps> = ({ title }): ReactElement => {
-    const dispatch = useDispatch();
     const searchBy = useSelector((store) => store.searchBy);
-    const [value, setValue] = useState('');
+    const sortBy = useSelector((store) => store.sortBy);
+    const searchInputValue = useSelector((store) => store.searchInput);
+    const dispatch = useDispatch();
+
+    console.log(searchBy);
 
     const onSearchByButton = () => {
-        dispatch(searchMovies({ offset: 0, searchOption: searchBy, searchValue: value }));
+        dispatch(searchMovies({ sortBy: sortBy, searchBy: searchBy, search: searchInputValue }));
     };
 
-    const handleSearchByButtonClick = (searchByValue: SearchBy) => (): void => {
-        dispatch(toggleSearchByOption(searchByValue));
+    const handleSearchByButtonClick = (searchBy: SearchBy) => (): void => {
+        dispatch(toggleSearchOption(searchBy));
     };
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
-        setValue(event.target.value);
+        dispatch(changeSearchInput(event.target.value));
 
     return (
         <div className="search">
             <p className="searchTitle">{title}</p>
             <input
-                value={value}
+                value={searchInputValue}
                 onChange={handleInputChange}
                 placeholder="Enter your request here ..."
             />

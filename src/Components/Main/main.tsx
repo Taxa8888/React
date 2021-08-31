@@ -1,8 +1,8 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../data/data.types';
 import './main.style.scss';
-import { getMovieById, loadMovies } from '../../store/movies/movies.reducer';
+import { getMovieById, loadingMovies } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Main = (): ReactElement => {
@@ -10,7 +10,7 @@ export const Main = (): ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadMovies({ offset: 0 }));
+        dispatch(loadingMovies({}));
     }, [dispatch]);
 
     const handleChosenMovie = (value: DataMovie) => (): void => {

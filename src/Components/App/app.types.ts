@@ -1,6 +1,6 @@
 export enum SortBy {
-    RELEASEDATE = 'release date',
-    RATING = 'rating',
+    RELEASEDATE = 'release_date',
+    RATING = 'vote_average',
 }
 
 export enum SearchBy {

@@ -1,9 +1,9 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
 import './sort.style.scss';
-import { sortByRating, sortByReleaseDate } from '../../store/movies/movies.reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { sortMoviesByRating, sortMoviesByReleaseDate } from '../../store/movies/movies.actions';
 
 export const Sort = (): ReactElement => {
     const sortBy = useSelector((store) => store.sortBy);
@@ -11,11 +11,11 @@ export const Sort = (): ReactElement => {
     const dispatch = useDispatch();
 
     const handleSortByReleaseDate = () => {
-        dispatch(sortByReleaseDate({ offset: 0 }));
+        dispatch(sortMoviesByReleaseDate({ offset: 0 }));
     };
 
     const handleSortByRating = () => {
-        dispatch(sortByRating({ offset: 0 }));
+        dispatch(sortMoviesByRating({ offset: 0 }));
     };
 
     return (

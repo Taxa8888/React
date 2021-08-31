@@ -4,23 +4,20 @@ import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
 import './headerdescription.style.scss';
 import noImage from '../../img/no_image.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleIsRoute } from '../../store/movies/movies.reducer';
+import { useSelector } from 'react-redux';
 
 export const HeaderDescription = (): ReactElement => {
-    const chosenMovie = useSelector((store) => store.chosenMovie);
-    const dispatch = useDispatch();
-    const { title, posterPath, releaseDate, runtime, overview } = chosenMovie;
-    const onReturnToMain = () => {
-        dispatch(toggleIsRoute());
-    };
+    const { title, posterPath, releaseDate, runtime, overview } = useSelector(
+        (store) => store.chosenMovie
+    );
+
     return (
         <div className="headerDescription" style={HEADER_BG_IMAGE}>
             <div className="headerDescriptionContainer">
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={onReturnToMain}
+                        onClick={() => console.log('1')}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >
