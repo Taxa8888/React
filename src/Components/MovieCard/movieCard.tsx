@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { MovieCardProps } from './movieCard.types';
 import './movieCard.style.scss';
-import noImage from '../../img/no_image.png';
+import noImage from '../../assets/no_image.png';
 
 export const MovieCard: FC<MovieCardProps> = ({
     img,

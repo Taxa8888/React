@@ -1,3 +1,5 @@
+import { SearchBy, SortBy } from '../../Components/app/app.types';
+
 export interface ChosenDataMovie {
     title: string;
     releaseDate: string;
@@ -30,4 +32,13 @@ export interface MockDataMovie {
     revenue: number;
     genres: string[];
     runtime: number;
+}
+
+export interface initialStateField {
+    movies: DataMovie[];
+    chosenMovie?: ChosenDataMovie;
+    sortBy: SortBy;
+    searchBy: SearchBy;
+    searchInput: string;
+    isRoute: boolean;
 }

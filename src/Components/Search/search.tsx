@@ -1,39 +1,35 @@
-import React, { ChangeEvent, FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useCallback, useState } from 'react';
 import { Button } from '../button/button';
 import { SearchBy } from '../app/app.types';
 import { SearchProps } from './search.types';
 import './search.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    changeSearchInput,
-    searchMovies,
-    toggleSearchOption,
-} from '../../store/movies/movies.actions';
+import { clickOnSearch, toggleSearchOption } from '../../store/movies/movies.actions';
 
 export const Search: FC<SearchProps> = ({ title }): ReactElement => {
+    const [inputSearch, setInputSearch] = useState('');
     const searchBy = useSelector((store) => store.searchBy);
-    const sortBy = useSelector((store) => store.sortBy);
-    const searchInputValue = useSelector((store) => store.searchInput);
     const dispatch = useDispatch();
 
-    console.log(searchBy);
+    console.log(inputSearch);
+
+    const handleInputChange = (event) => setInputSearch(event.target.value);
+
+    const toggleSearchBy = (searchBy: SearchBy) =>
+        useCallback(() => {
+            dispatch(toggleSearchOption(searchBy));
+        }, [searchBy]);
 
     const onSearchByButton = () => {
-        dispatch(searchMovies({ sortBy: sortBy, searchBy: searchBy, search: searchInputValue }));
+        setInputSearch('');
+        dispatch(clickOnSearch(inputSearch));
     };
-
-    const handleSearchByButtonClick = (searchBy: SearchBy) => (): void => {
-        dispatch(toggleSearchOption(searchBy));
-    };
-
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
-        dispatch(changeSearchInput(event.target.value));
 
     return (
         <div className="search">
             <p className="searchTitle">{title}</p>
             <input
-                value={searchInputValue}
+                value={inputSearch}
                 onChange={handleInputChange}
                 placeholder="Enter your request here ..."
             />
@@ -41,13 +37,13 @@ export const Search: FC<SearchProps> = ({ title }): ReactElement => {
                 <p>SEARCH BY</p>
                 <Button
                     className={`button ${searchBy === SearchBy.TITLE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SearchBy.TITLE)}
+                    onClick={toggleSearchBy(SearchBy.TITLE)}
                 >
                     Title
                 </Button>
                 <Button
                     className={`button ${searchBy === SearchBy.GENRE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SearchBy.GENRE)}
+                    onClick={toggleSearchBy(SearchBy.GENRE)}
                 >
                     Genre
                 </Button>

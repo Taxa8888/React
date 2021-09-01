@@ -3,13 +3,19 @@ import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
 import './headerdescription.style.scss';
-import noImage from '../../img/no_image.png';
-import { useSelector } from 'react-redux';
+import noImage from '../../assets/no_image.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickOnSearch } from '../../store/movies/movies.actions';
 
 export const HeaderDescription = (): ReactElement => {
     const { title, posterPath, releaseDate, runtime, overview } = useSelector(
         (store) => store.chosenMovie
     );
+    const dispatch = useDispatch();
+
+    const onSearchByButton = () => {
+        dispatch(clickOnSearch(''));
+    };
 
     return (
         <div className="headerDescription" style={HEADER_BG_IMAGE}>
@@ -17,7 +23,7 @@ export const HeaderDescription = (): ReactElement => {
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={() => console.log('1')}
+                        onClick={onSearchByButton}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >

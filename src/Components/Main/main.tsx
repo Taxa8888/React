@@ -1,17 +1,26 @@
 import React, { ReactElement, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
-import { DataMovie } from '../../data/data.types';
+import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
-import { getMovieById, loadingMovies } from '../../store/movies/movies.actions';
+import { getMovieById, loadMovies } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Main = (): ReactElement => {
+    const sortBy = useSelector((store) => store.sortBy);
+    const searchBy = useSelector((store) => store.searchBy);
+    const searchInputValue = useSelector((store) => store.searchInput);
     const movies = useSelector((store) => store.movies);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadingMovies({}));
-    }, [dispatch]);
+        dispatch(
+            loadMovies({
+                sortBy: sortBy,
+                search: searchInputValue,
+                searchBy: searchBy,
+            })
+        );
+    }, [sortBy, searchInputValue]);
 
     const handleChosenMovie = (value: DataMovie) => (): void => {
         dispatch(getMovieById({ id: value.id }));
