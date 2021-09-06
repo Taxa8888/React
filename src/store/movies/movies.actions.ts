@@ -9,7 +9,7 @@ import {
     MAIN_ENDPOINT,
 } from './movies.constants';
 import {
-    ChosenMovieActionPayload,
+    ChosenMoviesActionPayload,
     DataMovie,
     LoadMoviesProps,
     MoviesAction,
@@ -56,7 +56,7 @@ export const clickOnSearch = (value: string) => {
 };
 
 export const getMovieById = ({ id }: DataMovie) => {
-    return (dispatch: Dispatch<MoviesAction<ChosenMovieActionPayload>>): Promise<void> => {
+    return (dispatch: Dispatch<MoviesAction<ChosenMoviesActionPayload>>): Promise<void> => {
         return fetch(`${MAIN_ENDPOINT}/${id}`)
             .then((response) => response.json())
             .then((data) => dispatch({ type: GET_MOVIE_BY_ID, payload: data }));

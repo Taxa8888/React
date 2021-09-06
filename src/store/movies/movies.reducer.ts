@@ -1,11 +1,10 @@
 import { SearchBy, SortBy } from '../../Components/app/app.types';
 import { mapChosenMovie, mapMovies } from './movies.helper';
 import {
-    ChosenMovieActionPayload,
+    ChosenMoviesActionPayload,
     InitialState,
     MoviesAction,
     MoviesLoadActionPayload,
-    ResponseDataMovie,
     ToggleClickOnSearchOptionActionPayload,
     ToggleSearchOptionActionPayload,
     ToggleSortOptionActionPayload,
@@ -52,7 +51,7 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
 
             return {
                 ...state,
-                chosenMovie: mapChosenMovie(action.payload),
+                chosenMovie: mapChosenMovie((action.payload as ChosenMoviesActionPayload).data),
                 isRoute: false,
             };
         default:

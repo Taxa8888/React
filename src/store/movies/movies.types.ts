@@ -55,10 +55,9 @@ export interface MoviesLoadActionPayload {
     data: ResponseDataMovie[];
 }
 
-export interface ChosenMovieActionPayload {
+export interface ChosenMoviesActionPayload {
     data: ResponseDataMovie;
 }
-
 export interface ToggleSortOptionActionPayload {
     value: SortBy;
 }
@@ -76,7 +75,7 @@ type MoviesActionPayloads =
     | ToggleSortOptionActionPayload
     | ToggleSearchOptionActionPayload
     | ToggleClickOnSearchOptionActionPayload
-    | ChosenMovieActionPayload;
+    | ChosenMoviesActionPayload;
 export interface MoviesAction<T = MoviesActionPayloads> {
     type: string;
     payload: T;
