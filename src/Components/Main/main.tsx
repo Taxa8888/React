@@ -4,12 +4,18 @@ import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
 import { getMovieById, loadMovies } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+    selectMovies,
+    selectSearchBy,
+    selectsearchInput,
+    selectSortBy,
+} from '../../store/movies/movies.selectors';
 
 export const Main = (): ReactElement => {
-    const sortBy = useSelector((store) => store.sortBy);
-    const searchBy = useSelector((store) => store.searchBy);
-    const searchInputValue = useSelector((store) => store.searchInput);
-    const movies = useSelector((store) => store.movies);
+    const movies = useSelector(selectMovies);
+    const sortBy = useSelector(selectSortBy);
+    const searchBy = useSelector(selectSearchBy);
+    const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,12 +24,14 @@ export const Main = (): ReactElement => {
                 sortBy: sortBy,
                 search: searchInputValue,
                 searchBy: searchBy,
+                offset: 0,
+                limit: 8, // try to use useRef
             })
         );
-    }, [sortBy, searchInputValue]);
+    }, [dispatch, sortBy, searchInputValue, searchBy]);
 
-    const handleChosenMovie = (value: DataMovie) => (): void => {
-        dispatch(getMovieById({ id: value.id }));
+    const handleChosenMovie = (movie: DataMovie) => () => {
+        dispatch(getMovieById(movie));
     };
 
     return (
@@ -40,7 +48,6 @@ export const Main = (): ReactElement => {
                                 onClick={handleChosenMovie(movie)}
                                 key={id}
                                 img={posterPath}
-                                altTitle={title}
                                 title={title}
                                 year={releaseDate.slice(0, 4)}
                                 time={runtime}

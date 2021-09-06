@@ -1,3 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic);
+
 $accent-color: #e7e7e7;
 $brand-color: #fe4141;
 $dark-color: #1e1b26;
@@ -33,7 +36,7 @@ $text-summary: 1rem;
         rgba(30, 27, 38, 0.88) 53%,
         rgba(30, 27, 38, 1) 55%
     );
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1e1b26',GradientType=0 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1e1b26',GradientType=0 );
 
     position: relative;
     background-size: contain;
@@ -92,9 +95,6 @@ $text-summary: 1rem;
         }
     }
 }
-
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic);
 
 h1 {
     font-family: $heading-font-family;

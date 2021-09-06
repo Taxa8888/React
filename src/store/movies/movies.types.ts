@@ -19,7 +19,7 @@ export interface DataMovie {
     overview: string;
 }
 
-export interface MockDataMovie {
+export interface ResponseDataMovie {
     id: number;
     title: string;
     tagline: string;
@@ -34,11 +34,50 @@ export interface MockDataMovie {
     runtime: number;
 }
 
-export interface initialStateField {
+export interface InitialState {
     movies: DataMovie[];
-    chosenMovie?: ChosenDataMovie;
+    chosenMovie: ChosenDataMovie;
     sortBy: SortBy;
     searchBy: SearchBy;
     searchInput: string;
     isRoute: boolean;
+}
+
+export interface LoadMoviesProps {
+    search: string;
+    sortBy: SortBy;
+    searchBy: SearchBy;
+    offset: number;
+    limit: number;
+}
+
+export interface MoviesLoadActionPayload {
+    data: ResponseDataMovie[];
+}
+
+export interface ChosenMovieActionPayload {
+    data: ResponseDataMovie;
+}
+
+export interface ToggleSortOptionActionPayload {
+    value: SortBy;
+}
+
+export interface ToggleSearchOptionActionPayload {
+    value: SearchBy;
+}
+
+export interface ToggleClickOnSearchOptionActionPayload {
+    value: string;
+}
+
+type MoviesActionPayloads =
+    | MoviesLoadActionPayload
+    | ToggleSortOptionActionPayload
+    | ToggleSearchOptionActionPayload
+    | ToggleClickOnSearchOptionActionPayload
+    | ChosenMovieActionPayload;
+export interface MoviesAction<T = MoviesActionPayloads> {
+    type: string;
+    payload: T;
 }

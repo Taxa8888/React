@@ -1,11 +1,10 @@
 import React, { FC, ReactElement } from 'react';
 import { MovieCardProps } from './movieCard.types';
 import './movieCard.style.scss';
-import noImage from '../../assets/no_image.png';
+import { MovieImage } from '../movieImage/movieImage';
 
 export const MovieCard: FC<MovieCardProps> = ({
     img,
-    altTitle,
     title,
     year,
     time,
@@ -14,14 +13,7 @@ export const MovieCard: FC<MovieCardProps> = ({
 }): ReactElement => (
     <div className="movie" onClick={onClick}>
         <div>
-            <img
-                src={img}
-                onError={(e) => {
-                    e.currentTarget.src = noImage;
-                }}
-                alt={altTitle}
-                className="movieImg"
-            />
+            <MovieImage title={title} posterPath={img} className={'movieImg'} />
         </div>
         <div className="movieTextContent">
             <h1>{title}</h1>

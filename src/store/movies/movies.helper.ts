@@ -1,7 +1,7 @@
-import { ChosenDataMovie, DataMovie, MockDataMovie } from './movies.types';
+import { ChosenDataMovie, DataMovie, ResponseDataMovie } from './movies.types';
 
-export const mapMovies = (movies: MockDataMovie): DataMovie[] =>
-    movies.map(({ id, title, genres, runtime, overview, ...movie }: MockDataMovie) => ({
+export const mapMovies = (movies: ResponseDataMovie[]): DataMovie[] =>
+    movies.map(({ id, title, genres, runtime, overview, ...movie }: ResponseDataMovie) => ({
         id,
         title,
         voteAverage: movie.vote_average,
@@ -19,7 +19,7 @@ export const mapChosenMovie = ({
     genres,
     runtime,
     overview,
-}: MockDataMovie): ChosenDataMovie => {
+}: ResponseDataMovie): ChosenDataMovie => {
     return {
         title,
         posterPath: poster_path,

@@ -5,25 +5,25 @@ import { SearchProps } from './search.types';
 import './search.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickOnSearch, toggleSearchOption } from '../../store/movies/movies.actions';
+import { selectSearchBy } from '../../store/movies/movies.selectors';
 
 export const Search: FC<SearchProps> = ({ title }): ReactElement => {
     const [inputSearch, setInputSearch] = useState('');
-    const searchBy = useSelector((store) => store.searchBy);
+    const searchBy = useSelector(selectSearchBy);
     const dispatch = useDispatch();
 
     console.log(inputSearch);
 
-    const handleInputChange = (event) => setInputSearch(event.target.value);
+    const handleInputChange = useCallback((event) => setInputSearch(event.target.value), []);
 
-    const toggleSearchBy = (searchBy: SearchBy) =>
-        useCallback(() => {
-            dispatch(toggleSearchOption(searchBy));
-        }, [searchBy]);
+    const toggleSearchBy = (searchBy: SearchBy) => () => {
+        dispatch(toggleSearchOption(searchBy));
+    };
 
-    const onSearchByButton = () => {
+    const onSearchByButton = useCallback(() => {
         setInputSearch('');
         dispatch(clickOnSearch(inputSearch));
-    };
+    }, [inputSearch, dispatch]);
 
     return (
         <div className="search">

@@ -6,11 +6,10 @@ import './headerdescription.style.scss';
 import noImage from '../../assets/no_image.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickOnSearch } from '../../store/movies/movies.actions';
+import { selectChosenMovie } from '../../store/movies/movies.selectors';
 
 export const HeaderDescription = (): ReactElement => {
-    const { title, posterPath, releaseDate, runtime, overview } = useSelector(
-        (store) => store.chosenMovie
-    );
+    const { title, posterPath, releaseDate, runtime, overview } = useSelector(selectChosenMovie);
     const dispatch = useDispatch();
 
     const onSearchByButton = () => {

@@ -1,19 +1,19 @@
-import React, { ReactElement, useCallback, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
 import './sort.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSortOption } from '../../store/movies/movies.actions';
+import { selectMovies, selectSortBy } from '../../store/movies/movies.selectors';
 
 export const Sort = (): ReactElement => {
-    const sortBy = useSelector((store) => store.sortBy);
-    const movies = useSelector((store) => store.movies);
+    const sortBy = useSelector(selectSortBy);
+    const movies = useSelector(selectMovies);
     const dispatch = useDispatch();
 
-    const toggleSortBy = (sortBy: SortBy) =>
-        useCallback(() => {
-            dispatch(toggleSortOption(sortBy));
-        }, [sortBy]);
+    const toggleSortBy = (sortBy: SortBy) => () => {
+        dispatch(toggleSortOption(sortBy));
+    };
 
     return (
         <div className="sortContainer">
