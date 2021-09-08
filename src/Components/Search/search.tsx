@@ -12,8 +12,6 @@ export const Search: FC<SearchProps> = ({ title }): ReactElement => {
     const searchBy = useSelector(selectSearchBy);
     const dispatch = useDispatch();
 
-    console.log(inputSearch);
-
     const handleInputChange = useCallback((event) => setInputSearch(event.target.value), []);
 
     const toggleSearchBy = (searchBy: SearchBy) => () => {

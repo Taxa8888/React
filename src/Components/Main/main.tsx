@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
@@ -15,6 +15,7 @@ export const Main = (): ReactElement => {
     const movies = useSelector(selectMovies);
     const sortBy = useSelector(selectSortBy);
     const searchBy = useSelector(selectSearchBy);
+    const refSearchBy = useRef(searchBy);
     const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
 
@@ -23,12 +24,12 @@ export const Main = (): ReactElement => {
             loadMovies({
                 sortBy: sortBy,
                 search: searchInputValue,
-                searchBy: searchBy,
+                searchBy: refSearchBy.current,
                 offset: 0,
-                limit: 8, // try to use useRef
+                limit: 8,
             })
         );
-    }, [dispatch, sortBy, searchInputValue, searchBy]);
+    }, [dispatch, sortBy, searchInputValue]);
 
     const handleChosenMovie = (movie: DataMovie) => () => {
         dispatch(getMovieById(movie));
