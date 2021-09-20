@@ -1,9 +1,13 @@
-import React, { FC, ReactElement, useCallback, useState } from 'react';
+import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import noImage from '../../assets/no_image.png';
 import { MovieImageProps } from './movieImage.types';
 
 export const MovieImage: FC<MovieImageProps> = ({ title, posterPath, className }): ReactElement => {
     const [isLoadImageError, setIsLoadImageError] = useState(false);
+
+    useEffect(() => {
+        setIsLoadImageError(false);
+    }, [posterPath]);
 
     const hangleImageError = useCallback(() => {
         setIsLoadImageError(true);

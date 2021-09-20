@@ -47,11 +47,9 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
                 isRoute: true,
             };
         case GET_MOVIE_BY_ID:
-            console.log(action.payload);
-
             return {
                 ...state,
-                chosenMovie: mapChosenMovie((action.payload as ChosenMoviesActionPayload).data),
+                chosenMovie: mapChosenMovie(action.payload as ChosenMoviesActionPayload),
                 isRoute: false,
             };
         default:

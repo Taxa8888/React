@@ -55,9 +55,7 @@ export interface MoviesLoadActionPayload {
     data: ResponseDataMovie[];
 }
 
-export interface ChosenMoviesActionPayload {
-    data: ResponseDataMovie;
-}
+export type ChosenMoviesActionPayload = ResponseDataMovie;
 export interface ToggleSortOptionActionPayload {
     value: SortBy;
 }

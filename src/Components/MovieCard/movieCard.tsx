@@ -13,7 +13,7 @@ export const MovieCard: FC<MovieCardProps> = ({
 }): ReactElement => (
     <div className="movie" onClick={onClick}>
         <div>
-            <MovieImage title={title} posterPath={img} className={'movieImg'} />
+            <MovieImage title={title} posterPath={img} className="movieImg" />
         </div>
         <div className="movieTextContent">
             <h1>{title}</h1>

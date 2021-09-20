@@ -3,10 +3,10 @@ import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
 import './headerdescription.style.scss';
-import noImage from '../../assets/no_image.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickOnSearch } from '../../store/movies/movies.actions';
 import { selectChosenMovie } from '../../store/movies/movies.selectors';
+import { MovieImage } from '../movieImage/movieImage';
 
 export const HeaderDescription = (): ReactElement => {
     const { title, posterPath, releaseDate, runtime, overview } = useSelector(selectChosenMovie);
@@ -30,13 +30,10 @@ export const HeaderDescription = (): ReactElement => {
                     </Button>
                 </div>
                 <div className="fimlDescription">
-                    <img
+                    <MovieImage
+                        title={title}
+                        posterPath={posterPath}
                         className="descriptionMovieImg"
-                        src={posterPath}
-                        onError={(e) => {
-                            e.currentTarget.src = noImage;
-                        }}
-                        alt={title}
                     />
                     <div className="aboutFilm">
                         <p className="filmTitle">{title}</p>
