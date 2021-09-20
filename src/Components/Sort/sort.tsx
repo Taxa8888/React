@@ -1,12 +1,18 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
-import { SortProps } from './sort.types';
 import './sort.style.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSortOption } from '../../store/movies/movies.actions';
+import { selectMovies, selectSortBy } from '../../store/movies/movies.selectors';
 
-export const Sort: FC<SortProps> = ({ movies, sortBy, onSortByChange }): ReactElement => {
-    const handleSortByButtonClick = (sortByValue: SortBy) => (): void => {
-        onSortByChange(sortByValue);
+export const Sort = (): ReactElement => {
+    const sortBy = useSelector(selectSortBy);
+    const movies = useSelector(selectMovies);
+    const dispatch = useDispatch();
+
+    const toggleSortBy = (sortBy: SortBy) => () => {
+        dispatch(toggleSortOption(sortBy));
     };
 
     return (
@@ -18,13 +24,13 @@ export const Sort: FC<SortProps> = ({ movies, sortBy, onSortByChange }): ReactEl
                     className={`sortButton ${
                         sortBy === SortBy.RELEASEDATE ? 'activeSortButton' : ''
                     }`}
-                    onClick={handleSortByButtonClick(SortBy.RELEASEDATE)}
+                    onClick={toggleSortBy(SortBy.RELEASEDATE)}
                 >
                     release date
                 </Button>
                 <Button
                     className={`sortButton ${sortBy === SortBy.RATING ? 'activeSortButton' : ''}`}
-                    onClick={handleSortByButtonClick(SortBy.RATING)}
+                    onClick={toggleSortBy(SortBy.RATING)}
                 >
                     rating
                 </Button>

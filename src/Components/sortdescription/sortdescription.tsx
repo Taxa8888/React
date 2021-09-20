@@ -1,11 +1,13 @@
-import React, { FC, ReactElement } from 'react';
-import { SortDescriptionProps } from './sortdescription.types';
+import React, { ReactElement } from 'react';
 import './sortdescription.style.scss';
+import { useSelector } from 'react-redux';
+import { selectChosenMovie } from '../../store/movies/movies.selectors';
 
-export const SortDescription: FC<SortDescriptionProps> = ({
-    chosenMovie: { genres },
-}): ReactElement => (
-    <div className="sortDescriprionContainer">
-        <div className="sortDescriprionBy">{`Films by ${genres.join(', ')} genres`}</div>
-    </div>
-);
+export const SortDescription = (): ReactElement => {
+    const { genres } = useSelector(selectChosenMovie);
+    return (
+        <div className="sortDescriprionContainer">
+            <div className="sortDescriprionBy">{`Films by ${genres.join(', ')} genres`}</div>
+        </div>
+    );
+};

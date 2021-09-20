@@ -1,16 +1,19 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
-import { HeaderDescriptionProps } from './headerdescription.types';
 import './headerdescription.style.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickOnSearch } from '../../store/movies/movies.actions';
+import { selectChosenMovie } from '../../store/movies/movies.selectors';
+import { MovieImage } from '../movieImage/movieImage';
 
-export const HeaderDescription: FC<HeaderDescriptionProps> = ({
-    chosenMovie: { title, releaseDate, runtime, overview, posterPath },
-    clickSearchButton,
-}): ReactElement => {
-    const onSearchButton = () => () => {
-        clickSearchButton();
+export const HeaderDescription = (): ReactElement => {
+    const { title, posterPath, releaseDate, runtime, overview } = useSelector(selectChosenMovie);
+    const dispatch = useDispatch();
+
+    const onSearchByButton = () => {
+        dispatch(clickOnSearch(''));
     };
 
     return (
@@ -19,7 +22,7 @@ export const HeaderDescription: FC<HeaderDescriptionProps> = ({
                 <div className="navElements">
                     <p className="headerDescriptionTitle">{MAIN_PROJECT_TITLE}</p>
                     <Button
-                        onClick={onSearchButton()}
+                        onClick={onSearchByButton}
                         className="button"
                         style={{ marginLeft: '40rem' }}
                     >
@@ -27,7 +30,11 @@ export const HeaderDescription: FC<HeaderDescriptionProps> = ({
                     </Button>
                 </div>
                 <div className="fimlDescription">
-                    <img className="descriptionMovieImg" src={posterPath} alt="server disconnect" />
+                    <MovieImage
+                        title={title}
+                        posterPath={posterPath}
+                        className="descriptionMovieImg"
+                    />
                     <div className="aboutFilm">
                         <p className="filmTitle">{title}</p>
                         <span className="filmDate">{releaseDate.slice(0, 4)}</span>

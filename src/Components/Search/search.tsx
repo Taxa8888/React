@@ -1,31 +1,33 @@
-import React, { ChangeEvent, FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useCallback, useState } from 'react';
 import { Button } from '../button/button';
 import { SearchBy } from '../app/app.types';
 import { SearchProps } from './search.types';
 import './search.style.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickOnSearch, toggleSearchOption } from '../../store/movies/movies.actions';
+import { selectSearchBy } from '../../store/movies/movies.selectors';
 
-export const Search: FC<SearchProps> = ({
-    title,
-    onSearch,
-    searchBy,
-    onSearchByChange,
-}): ReactElement => {
-    const [value, setValue] = useState('');
+export const Search: FC<SearchProps> = ({ title }): ReactElement => {
+    const [inputSearch, setInputSearch] = useState('');
+    const searchBy = useSelector(selectSearchBy);
+    const dispatch = useDispatch();
 
-    const handleSearchByButtonClick = (searchByValue: SearchBy) => (): void => {
-        onSearchByChange(searchByValue);
+    const handleInputChange = useCallback((event) => setInputSearch(event.target.value), []);
+
+    const toggleSearchBy = (searchBy: SearchBy) => () => {
+        dispatch(toggleSearchOption(searchBy));
     };
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
-        setValue(event.target.value);
-
-    const handleSearchButtonClick = () => onSearch(value);
+    const onSearchByButton = useCallback(() => {
+        setInputSearch('');
+        dispatch(clickOnSearch(inputSearch));
+    }, [inputSearch, dispatch]);
 
     return (
         <div className="search">
             <p className="searchTitle">{title}</p>
             <input
-                value={value}
+                value={inputSearch}
                 onChange={handleInputChange}
                 placeholder="Enter your request here ..."
             />
@@ -33,20 +35,20 @@ export const Search: FC<SearchProps> = ({
                 <p>SEARCH BY</p>
                 <Button
                     className={`button ${searchBy === SearchBy.TITLE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SearchBy.TITLE)}
+                    onClick={toggleSearchBy(SearchBy.TITLE)}
                 >
                     Title
                 </Button>
                 <Button
                     className={`button ${searchBy === SearchBy.GENRE ? 'active' : ''}`}
-                    onClick={handleSearchByButtonClick(SearchBy.GENRE)}
+                    onClick={toggleSearchBy(SearchBy.GENRE)}
                 >
                     Genre
                 </Button>
                 <Button
                     className="button"
                     style={{ marginLeft: '345px' }}
-                    onClick={handleSearchButtonClick}
+                    onClick={onSearchByButton}
                 >
                     SEARCH
                 </Button>
