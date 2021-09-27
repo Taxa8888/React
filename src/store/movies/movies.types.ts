@@ -40,6 +40,7 @@ export interface InitialState {
     sortBy: SortBy;
     searchBy: SearchBy;
     searchInput: string;
+    isLoading: boolean;
 }
 
 export interface LoadMoviesProps {
@@ -48,6 +49,10 @@ export interface LoadMoviesProps {
     searchBy: SearchBy;
     offset: number;
     limit: number;
+}
+
+export interface LinkParams {
+    id: number;
 }
 
 export interface MoviesLoadActionPayload {

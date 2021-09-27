@@ -23,6 +23,7 @@ export const initialState: InitialState = {
     sortBy: SortBy.RELEASEDATE,
     searchBy: SearchBy.TITLE,
     searchInput: '',
+    isLoading: true,
 };
 
 export const moviesReducer = (state = initialState, action: MoviesAction): InitialState => {
@@ -31,6 +32,7 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 movies: mapMovies((action.payload as MoviesLoadActionPayload).data),
+                isLoading: false,
             };
         case TOGGLE_SORT_OPTION:
             return { ...state, sortBy: (action.payload as ToggleSortOptionActionPayload).value };
@@ -48,6 +50,7 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 chosenMovie: mapChosenMovie(action.payload as ChosenMoviesActionPayload),
+                isLoading: false,
             };
         default:
             return state;

@@ -3,15 +3,8 @@ import { MovieCardProps } from './movieCard.types';
 import './movieCard.style.scss';
 import { MovieImage } from '../movieImage/movieImage';
 
-export const MovieCard: FC<MovieCardProps> = ({
-    img,
-    title,
-    year,
-    time,
-    genre,
-    onClick,
-}): ReactElement => (
-    <div className="movie" onClick={onClick}>
+export const MovieCard: FC<MovieCardProps> = ({ img, title, year, time, genre }): ReactElement => (
+    <div className="movie">
         <div>
             <MovieImage title={title} posterPath={img} className="movieImg" />
         </div>
