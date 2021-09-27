@@ -10,6 +10,7 @@ import {
     selectsearchInput,
     selectSortBy,
 } from '../../store/movies/movies.selectors';
+import { Link } from 'react-router-dom';
 
 export const Main = (): ReactElement => {
     const movies = useSelector(selectMovies);
@@ -31,8 +32,8 @@ export const Main = (): ReactElement => {
         );
     }, [dispatch, sortBy, searchInputValue]);
 
-    const handleChosenMovie = (movie: DataMovie) => () => {
-        dispatch(getMovieById(movie));
+    const handleChosenMovie = (id: number) => () => {
+        dispatch(getMovieById(id));
     };
 
     return (
@@ -45,15 +46,17 @@ export const Main = (): ReactElement => {
                         const { id, posterPath, title, releaseDate, runtime, genres } = movie;
 
                         return (
-                            <MovieCard
-                                onClick={handleChosenMovie(movie)}
-                                key={id}
-                                img={posterPath}
-                                title={title}
-                                year={releaseDate.slice(0, 4)}
-                                time={runtime}
-                                genre={genres.join(', ')}
-                            />
+                            <Link key={id} to={`/movie/${id}`}>
+                                <MovieCard
+                                    onClick={handleChosenMovie(id)}
+                                    key={id}
+                                    img={posterPath}
+                                    title={title}
+                                    year={releaseDate.slice(0, 4)}
+                                    time={runtime}
+                                    genre={genres.join(', ')}
+                                />
+                            </Link>
                         );
                     })
                 )}

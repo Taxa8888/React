@@ -10,7 +10,6 @@ import {
 } from './movies.constants';
 import {
     ChosenMoviesActionPayload,
-    DataMovie,
     LoadMoviesProps,
     MoviesAction,
     MoviesLoadActionPayload,
@@ -55,7 +54,7 @@ export const clickOnSearch = (value: string) => {
     };
 };
 
-export const getMovieById = ({ id }: DataMovie) => {
+export const getMovieById = (id: number) => {
     return (dispatch: Dispatch<MoviesAction<ChosenMoviesActionPayload>>): Promise<void> => {
         return fetch(`${MAIN_ENDPOINT}/${id}`)
             .then((response) => response.json())

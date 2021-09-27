@@ -5,26 +5,27 @@ import { Sort } from '../sort/sort';
 import { SortDescription } from '../sortdescription/sortdescription';
 import { Main } from '../main/main';
 import { Footer } from '../footer/footer';
-import { useSelector } from 'react-redux';
-import { selectIsRoute } from '../../store/movies/movies.selectors';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 export const App = (): ReactElement => {
-    const isRoute = useSelector(selectIsRoute);
     return (
-        <>
-            {isRoute ? (
-                <>
-                    <Header />
-                    <Sort />
-                </>
-            ) : (
-                <>
-                    <HeaderDescription />
-                    <SortDescription />
-                </>
-            )}
-            <Main />
-            <Footer />
-        </>
+        <Provider store={store}>
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <Header />
+                        <Sort />
+                    </Route>
+                    <Route path="/movie/:id">
+                        <HeaderDescription />
+                        <SortDescription />
+                    </Route>
+                </Switch>
+                <Main />
+                <Footer />
+            </Router>
+        </Provider>
     );
 };

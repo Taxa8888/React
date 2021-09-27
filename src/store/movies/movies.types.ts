@@ -40,7 +40,6 @@ export interface InitialState {
     sortBy: SortBy;
     searchBy: SearchBy;
     searchInput: string;
-    isRoute: boolean;
 }
 
 export interface LoadMoviesProps {

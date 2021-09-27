@@ -23,7 +23,6 @@ export const initialState: InitialState = {
     sortBy: SortBy.RELEASEDATE,
     searchBy: SearchBy.TITLE,
     searchInput: '',
-    isRoute: true,
 };
 
 export const moviesReducer = (state = initialState, action: MoviesAction): InitialState => {
@@ -44,13 +43,11 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 searchInput: (action.payload as ToggleClickOnSearchOptionActionPayload).value,
-                isRoute: true,
             };
         case GET_MOVIE_BY_ID:
             return {
                 ...state,
                 chosenMovie: mapChosenMovie(action.payload as ChosenMoviesActionPayload),
-                isRoute: false,
             };
         default:
             return state;

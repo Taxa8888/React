@@ -17,6 +17,7 @@ module.exports = (env, { mode }) => {
         },
         devServer: {
             contentBase: path.resolve(__dirname, 'build'),
+            historyApiFallback: true,
             open: true,
             compress: true,
             hot: true,

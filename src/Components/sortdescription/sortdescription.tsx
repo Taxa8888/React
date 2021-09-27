@@ -4,7 +4,13 @@ import { useSelector } from 'react-redux';
 import { selectChosenMovie } from '../../store/movies/movies.selectors';
 
 export const SortDescription = (): ReactElement => {
-    const { genres } = useSelector(selectChosenMovie);
+    const chosenMovie = useSelector(selectChosenMovie);
+
+    if (!chosenMovie) {
+        return null;
+    }
+
+    const { genres } = chosenMovie;
     return (
         <div className="sortDescriprionContainer">
             <div className="sortDescriprionBy">{`Films by ${genres.join(', ')} genres`}</div>

@@ -9,12 +9,19 @@ import { selectChosenMovie } from '../../store/movies/movies.selectors';
 import { MovieImage } from '../movieImage/movieImage';
 
 export const HeaderDescription = (): ReactElement => {
-    const { title, posterPath, releaseDate, runtime, overview } = useSelector(selectChosenMovie);
+    const chosenMovie = useSelector(selectChosenMovie);
+
     const dispatch = useDispatch();
 
     const onSearchByButton = () => {
         dispatch(clickOnSearch(''));
     };
+
+    if (!chosenMovie) {
+        return null;
+    }
+
+    const { title, posterPath, releaseDate, runtime, overview } = chosenMovie;
 
     return (
         <div className="headerDescription" style={HEADER_BG_IMAGE}>
