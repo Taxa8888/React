@@ -15,6 +15,10 @@ import {
     TOGGLE_SEARCH_OPTION,
     CLICK_ON_SEARCH,
     GET_MOVIE_BY_ID,
+    IS_LOADING_MOVIES_START,
+    IS_LOADING_MOVIES_FINISH,
+    IS_LOADING_CHOSEN_MOVIE_START,
+    IS_LOADING_CHOSEN_MOVIE_FINISH,
 } from './movies.constants';
 
 export const initialState: InitialState = {
@@ -23,7 +27,8 @@ export const initialState: InitialState = {
     sortBy: SortBy.RELEASEDATE,
     searchBy: SearchBy.TITLE,
     searchInput: '',
-    isLoading: true,
+    isMoviesLoading: true,
+    isChosenMovieLoadin: true,
 };
 
 export const moviesReducer = (state = initialState, action: MoviesAction): InitialState => {
@@ -32,7 +37,6 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 movies: mapMovies((action.payload as MoviesLoadActionPayload).data),
-                isLoading: false,
             };
         case TOGGLE_SORT_OPTION:
             return { ...state, sortBy: (action.payload as ToggleSortOptionActionPayload).value };
@@ -50,7 +54,26 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 chosenMovie: mapChosenMovie(action.payload as ChosenMoviesActionPayload),
-                isLoading: false,
+            };
+        case IS_LOADING_MOVIES_START:
+            return {
+                ...state,
+                isMoviesLoading: true,
+            };
+        case IS_LOADING_MOVIES_FINISH:
+            return {
+                ...state,
+                isMoviesLoading: false,
+            };
+        case IS_LOADING_CHOSEN_MOVIE_START:
+            return {
+                ...state,
+                isChosenMovieLoadin: true,
+            };
+        case IS_LOADING_CHOSEN_MOVIE_FINISH:
+            return {
+                ...state,
+                isChosenMovieLoadin: false,
             };
         default:
             return state;

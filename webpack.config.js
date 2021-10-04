@@ -16,14 +16,16 @@ module.exports = (env, { mode }) => {
             publicPath: '',
         },
         devServer: {
+            host: 'localhost',
+            port: 3000,
+            historyApiFallback: true,
             contentBase: path.resolve(__dirname, 'build'),
             open: true,
             compress: true,
             hot: true,
-            port: 3000,
         },
         plugins: [
-            new HTMLWebpackPlugin({ template: './src/public/index.html' }),
+            new HTMLWebpackPlugin({ template: './src/public/index.html', base: '/' }),
             new MiniCssExtractPlugin({
                 filename: `${filename('css')}`,
             }),

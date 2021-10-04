@@ -5,25 +5,25 @@ import { Button } from '../button/button';
 import './headerdescription.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovieById } from '../../store/movies/movies.actions';
-import { selectChosenMovie, selectIsLoading } from '../../store/movies/movies.selectors';
+import { selectChosenMovie, selectIsChosenMovieLoadin } from '../../store/movies/movies.selectors';
 import { MovieImage } from '../movieImage/movieImage';
 import { Link, useParams } from 'react-router-dom';
 import { Loading } from '../loading/loading';
+import { LinkParams } from '../../store/movies/movies.types';
 
 export const HeaderDescription = (): ReactElement => {
-    const isLoading = useSelector(selectIsLoading);
-    const params = useParams();
-
+    const isChosenMovieLoadin = useSelector(selectIsChosenMovieLoadin);
     const dispatch = useDispatch();
+    const { id } = useParams() as LinkParams;
 
     useEffect(() => {
-        dispatch(getMovieById(1));
-    }, [dispatch, params]);
+        dispatch(getMovieById(id));
+    }, [dispatch, id]);
 
     const chosenMovie = useSelector(selectChosenMovie);
 
-    if (!isLoading) {
-        return <Loading type="bars" color="#000000"></Loading>;
+    if (isChosenMovieLoadin) {
+        return <Loading type="bars" color="#000000" />;
     } else {
         return (
             <div className="headerDescription" style={HEADER_BG_IMAGE}>

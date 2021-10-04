@@ -16,7 +16,7 @@ export const MovieImage: FC<MovieImageProps> = ({ title, posterPath, className }
     return (
         <>
             {isLoadImageError ? (
-                <img className={className} src={noImage} alt={title} />
+                <img className={className} src={`${noImage}`} alt={title} />
             ) : (
                 <img
                     className={className}

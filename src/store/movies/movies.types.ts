@@ -40,7 +40,8 @@ export interface InitialState {
     sortBy: SortBy;
     searchBy: SearchBy;
     searchInput: string;
-    isLoading: boolean;
+    isMoviesLoading: boolean;
+    isChosenMovieLoadin: boolean;
 }
 
 export interface LoadMoviesProps {
@@ -52,9 +53,8 @@ export interface LoadMoviesProps {
 }
 
 export interface LinkParams {
-    id: number;
+    id: string;
 }
-
 export interface MoviesLoadActionPayload {
     data: ResponseDataMovie[];
 }
@@ -63,13 +63,15 @@ export type ChosenMoviesActionPayload = ResponseDataMovie;
 export interface ToggleSortOptionActionPayload {
     value: SortBy;
 }
-
 export interface ToggleSearchOptionActionPayload {
     value: SearchBy;
 }
-
 export interface ToggleClickOnSearchOptionActionPayload {
     value: string;
+}
+
+export interface Action {
+    type: string;
 }
 
 type MoviesActionPayloads =
@@ -78,7 +80,6 @@ type MoviesActionPayloads =
     | ToggleSearchOptionActionPayload
     | ToggleClickOnSearchOptionActionPayload
     | ChosenMoviesActionPayload;
-export interface MoviesAction<T = MoviesActionPayloads> {
-    type: string;
+export interface MoviesAction<T = MoviesActionPayloads> extends Action {
     payload: T;
 }

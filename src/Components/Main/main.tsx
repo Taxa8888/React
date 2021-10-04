@@ -5,7 +5,7 @@ import './main.style.scss';
 import { loadMovies } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    selectIsLoading,
+    selectIsMoviesLoading,
     selectMovies,
     selectSearchBy,
     selectsearchInput,
@@ -18,7 +18,7 @@ export const Main = (): ReactElement => {
     const movies = useSelector(selectMovies);
     const sortBy = useSelector(selectSortBy);
     const searchBy = useSelector(selectSearchBy);
-    const isLoading = useSelector(selectIsLoading);
+    const isMoviesLoading = useSelector(selectIsMoviesLoading);
     const refSearchBy = useRef(searchBy);
     const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
@@ -35,8 +35,8 @@ export const Main = (): ReactElement => {
         );
     }, [dispatch, sortBy, searchInputValue]);
 
-    if (isLoading) {
-        return <Loading type="bars" color="#000000"></Loading>;
+    if (isMoviesLoading) {
+        return <Loading type="bars" color="#000000" />;
     } else {
         return (
             <main className="main">

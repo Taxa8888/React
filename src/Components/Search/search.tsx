@@ -6,6 +6,7 @@ import './search.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickOnSearch, toggleSearchOption } from '../../store/movies/movies.actions';
 import { selectSearchBy } from '../../store/movies/movies.selectors';
+import { Link } from 'react-router-dom';
 
 export const Search: FC<SearchProps> = ({ title }): ReactElement => {
     const [inputSearch, setInputSearch] = useState('');
@@ -45,13 +46,15 @@ export const Search: FC<SearchProps> = ({ title }): ReactElement => {
                 >
                     Genre
                 </Button>
-                <Button
-                    className="button"
-                    style={{ marginLeft: '345px' }}
-                    onClick={onSearchByButton}
-                >
-                    SEARCH
-                </Button>
+                <Link to={`/search/Search?${searchBy}=${inputSearch}`}>
+                    <Button
+                        className="button"
+                        style={{ marginLeft: '345px' }}
+                        onClick={onSearchByButton}
+                    >
+                        SEARCH
+                    </Button>
+                </Link>
             </div>
         </div>
     );

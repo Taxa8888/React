@@ -6,4 +6,6 @@ export const selectChosenMovie = (store: InitialState): ChosenDataMovie => store
 export const selectSortBy = (store: InitialState): SortBy => store.sortBy;
 export const selectSearchBy = (store: InitialState): SearchBy => store.searchBy;
 export const selectsearchInput = (store: InitialState): string => store.searchInput;
-export const selectIsLoading = (store: InitialState): boolean => store.isLoading;
+export const selectIsMoviesLoading = (store: InitialState): boolean => store.isMoviesLoading;
+export const selectIsChosenMovieLoadin = (store: InitialState): boolean =>
+    store.isChosenMovieLoadin;

@@ -5,15 +5,13 @@ import { Sort } from '../sort/sort';
 import { SortDescription } from '../sortdescription/sortdescription';
 import { Main } from '../main/main';
 import { Footer } from '../footer/footer';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from '../../store/store';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export const App = (): ReactElement => {
     return (
-        <Provider store={store}>
-            <Router>
-                <Route exact path="/">
+        <Router>
+            <Switch>
+                <Route exact path={['/', '/search/*']}>
                     <Header />
                     <Sort />
                 </Route>
@@ -21,9 +19,12 @@ export const App = (): ReactElement => {
                     <HeaderDescription />
                     <SortDescription />
                 </Route>
-                <Main />
-                <Footer />
-            </Router>
-        </Provider>
+                <Route path="*">
+                    <div>KUDA?</div>
+                </Route>
+            </Switch>
+            <Main />
+            <Footer />
+        </Router>
     );
 };
