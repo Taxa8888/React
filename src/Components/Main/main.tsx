@@ -52,7 +52,7 @@ export const Main = (): ReactElement => {
                 limit: 8,
             })
         );
-    }, [dispatch, sortBy, searchInputValue]);
+    }, [dispatch, applyQueryParams, sortBy, searchInputValue]);
 
     if (isMoviesLoading) {
         return <Loading type="bars" color="#000000" />;
