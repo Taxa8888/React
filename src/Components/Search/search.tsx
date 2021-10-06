@@ -9,8 +9,8 @@ import { selectSearchBy } from '../../store/movies/movies.selectors';
 import { Link } from 'react-router-dom';
 
 export const Search: FC<SearchProps> = ({ title }): ReactElement => {
-    const [inputSearch, setInputSearch] = useState('');
     const searchBy = useSelector(selectSearchBy);
+    const [inputSearch, setInputSearch] = useState('');
     const dispatch = useDispatch();
 
     const handleInputChange = useCallback((event) => setInputSearch(event.target.value), []);

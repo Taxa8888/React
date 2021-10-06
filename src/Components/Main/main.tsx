@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
-import { loadMovies } from '../../store/movies/movies.actions';
+import { clickOnSearch, loadMovies, toggleSearchOption } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     selectIsMoviesLoading,
@@ -11,8 +11,9 @@ import {
     selectsearchInput,
     selectSortBy,
 } from '../../store/movies/movies.selectors';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Loading } from '../loading/loading';
+import { SearchBy } from '../app/app.types';
 
 export const Main = (): ReactElement => {
     const movies = useSelector(selectMovies);
@@ -20,10 +21,28 @@ export const Main = (): ReactElement => {
     const searchBy = useSelector(selectSearchBy);
     const isMoviesLoading = useSelector(selectIsMoviesLoading);
     const refSearchBy = useRef(searchBy);
+    refSearchBy.current = searchBy;
     const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
 
+    const useQuery = () => {
+        return new URLSearchParams(useLocation().search);
+    };
+
+    const queryParams = useQuery();
+
+    const applyQueryParams = useCallback(() => {
+        if (queryParams.has(SearchBy.TITLE)) {
+            dispatch(toggleSearchOption(SearchBy.TITLE));
+            dispatch(clickOnSearch(queryParams.get(SearchBy.TITLE)));
+        } else if (queryParams.has(SearchBy.GENRE)) {
+            dispatch(toggleSearchOption(SearchBy.GENRE));
+            dispatch(clickOnSearch(queryParams.get(SearchBy.GENRE)));
+        }
+    }, [dispatch, queryParams]);
+
     useEffect(() => {
+        applyQueryParams();
         dispatch(
             loadMovies({
                 sortBy: sortBy,
