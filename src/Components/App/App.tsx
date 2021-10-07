@@ -6,6 +6,7 @@ import { SortDescription } from '../sortdescription/sortdescription';
 import { Main } from '../main/main';
 import { Footer } from '../footer/footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ErrorPage } from '../errorpage/errorpage';
 
 export const App = (): ReactElement => {
     return (
@@ -14,16 +15,17 @@ export const App = (): ReactElement => {
                 <Route exact path={['/', '/search/*']}>
                     <Header />
                     <Sort />
+                    <Main />
                 </Route>
                 <Route path="/movie/:id">
                     <HeaderDescription />
                     <SortDescription />
+                    <Main />
                 </Route>
-                <Route path="*">
-                    <div>KUDA?</div>
+                <Route path={['*']}>
+                    <ErrorPage />
                 </Route>
             </Switch>
-            <Main />
             <Footer />
         </Router>
     );

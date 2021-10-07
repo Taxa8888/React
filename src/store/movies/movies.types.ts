@@ -36,6 +36,8 @@ export interface ResponseDataMovie {
 
 export interface InitialState {
     movies: DataMovie[];
+    total: number;
+    offset: number;
     chosenMovie: ChosenDataMovie;
     sortBy: SortBy;
     searchBy: SearchBy;
@@ -57,6 +59,7 @@ export interface LinkParams {
 }
 export interface MoviesLoadActionPayload {
     data: ResponseDataMovie[];
+    total: number;
 }
 
 export type ChosenMoviesActionPayload = ResponseDataMovie;
@@ -70,12 +73,17 @@ export interface ToggleClickOnSearchOptionActionPayload {
     value: string;
 }
 
+export interface ClickOnSetOffset {
+    value: number;
+}
+
 export interface Action {
     type: string;
 }
 
 type MoviesActionPayloads =
     | MoviesLoadActionPayload
+    | ClickOnSetOffset
     | ToggleSortOptionActionPayload
     | ToggleSearchOptionActionPayload
     | ToggleClickOnSearchOptionActionPayload

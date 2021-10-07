@@ -11,10 +11,12 @@ import {
     IS_LOADING_MOVIES_FINISH,
     IS_LOADING_CHOSEN_MOVIE_START,
     IS_LOADING_CHOSEN_MOVIE_FINISH,
+    SET_OFFSET,
 } from './movies.constants';
 import {
     Action,
     ChosenMoviesActionPayload,
+    ClickOnSetOffset,
     LoadMoviesProps,
     MoviesAction,
     MoviesLoadActionPayload,
@@ -57,6 +59,12 @@ export const toggleSortOption = (value: SortBy) => {
 export const toggleSearchOption = (value: SearchBy) => {
     return (dispatch: Dispatch<MoviesAction<ToggleSearchOptionActionPayload>>): void => {
         dispatch({ type: TOGGLE_SEARCH_OPTION, payload: { value } });
+    };
+};
+
+export const clickOnSetOffset = (value: number) => {
+    return (dispatch: Dispatch<MoviesAction<ClickOnSetOffset>>): void => {
+        dispatch({ type: SET_OFFSET, payload: { value } });
     };
 };
 

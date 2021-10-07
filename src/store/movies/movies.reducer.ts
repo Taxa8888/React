@@ -2,6 +2,7 @@ import { SearchBy, SortBy } from '../../Components/app/app.types';
 import { mapChosenMovie, mapMovies } from './movies.helper';
 import {
     ChosenMoviesActionPayload,
+    ClickOnSetOffset,
     InitialState,
     MoviesAction,
     MoviesLoadActionPayload,
@@ -19,10 +20,13 @@ import {
     IS_LOADING_MOVIES_FINISH,
     IS_LOADING_CHOSEN_MOVIE_START,
     IS_LOADING_CHOSEN_MOVIE_FINISH,
+    SET_OFFSET,
 } from './movies.constants';
 
 export const initialState: InitialState = {
     movies: [],
+    total: 0,
+    offset: 0,
     chosenMovie: undefined,
     sortBy: SortBy.RELEASEDATE,
     searchBy: SearchBy.TITLE,
@@ -37,6 +41,12 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 movies: mapMovies((action.payload as MoviesLoadActionPayload).data),
+                total: (action.payload as MoviesLoadActionPayload).total,
+            };
+        case SET_OFFSET:
+            return {
+                ...state,
+                offset: (action.payload as ClickOnSetOffset).value,
             };
         case TOGGLE_SORT_OPTION:
             return { ...state, sortBy: (action.payload as ToggleSortOptionActionPayload).value };

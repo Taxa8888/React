@@ -1,22 +1,26 @@
-import React, { ReactElement, useCallback, useEffect, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
-import { clickOnSearch, loadMovies, toggleSearchOption } from '../../store/movies/movies.actions';
+import { clickOnSetOffset, loadMovies } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     selectIsMoviesLoading,
     selectMovies,
+    selectOffset,
     selectSearchBy,
     selectsearchInput,
     selectSortBy,
+    selectTotal,
 } from '../../store/movies/movies.selectors';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Loading } from '../loading/loading';
-import { SearchBy } from '../app/app.types';
 
 export const Main = (): ReactElement => {
+    const [paginationValue, setPaginationsValue] = useState(0);
     const movies = useSelector(selectMovies);
+    const total = useSelector(selectTotal);
+    const offset = useSelector(selectOffset);
     const sortBy = useSelector(selectSortBy);
     const searchBy = useSelector(selectSearchBy);
     const isMoviesLoading = useSelector(selectIsMoviesLoading);
@@ -25,34 +29,29 @@ export const Main = (): ReactElement => {
     const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
 
-    const useQuery = () => {
-        return new URLSearchParams(useLocation().search);
-    };
-
-    const queryParams = useQuery();
-
-    const applyQueryParams = useCallback(() => {
-        if (queryParams.has(SearchBy.TITLE)) {
-            dispatch(toggleSearchOption(SearchBy.TITLE));
-            dispatch(clickOnSearch(queryParams.get(SearchBy.TITLE)));
-        } else if (queryParams.has(SearchBy.GENRE)) {
-            dispatch(toggleSearchOption(SearchBy.GENRE));
-            dispatch(clickOnSearch(queryParams.get(SearchBy.GENRE)));
-        }
-    }, [dispatch, queryParams]);
-
     useEffect(() => {
-        applyQueryParams();
         dispatch(
             loadMovies({
                 sortBy: sortBy,
                 search: searchInputValue,
                 searchBy: refSearchBy.current,
-                offset: 0,
+                offset: offset,
                 limit: 8,
             })
         );
-    }, [dispatch, applyQueryParams, sortBy, searchInputValue]);
+    }, [dispatch, sortBy, searchInputValue, offset]);
+
+    const onClickOffsetMinus = () => {
+        total;
+        setPaginationsValue(paginationValue - 1);
+        dispatch(clickOnSetOffset(paginationValue * 8));
+    };
+
+    const onClickOffsetPlus = () => {
+        total;
+        setPaginationsValue(paginationValue + 1);
+        dispatch(clickOnSetOffset(paginationValue * 8));
+    };
 
     if (isMoviesLoading) {
         return <Loading type="bars" color="#000000" />;
@@ -79,6 +78,17 @@ export const Main = (): ReactElement => {
                             );
                         })
                     )}
+                </div>
+                <div className="paginationContainer">
+                    <button
+                        onClick={onClickOffsetMinus}
+                        className="paginationButton paginationButtonMinus"
+                    ></button>
+                    <input className="paginationInput" type="text" value={paginationValue} />
+                    <button
+                        onClick={onClickOffsetPlus}
+                        className="paginationButton paginationButtonPlus"
+                    ></button>
                 </div>
             </main>
         );

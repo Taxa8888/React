@@ -2,6 +2,8 @@ import { SearchBy, SortBy } from '../../Components/app/app.types';
 import { ChosenDataMovie, DataMovie, InitialState } from './movies.types';
 
 export const selectMovies = (store: InitialState): DataMovie[] => store.movies;
+export const selectTotal = (store: InitialState): number => store.total;
+export const selectOffset = (store: InitialState): number => store.offset;
 export const selectChosenMovie = (store: InitialState): ChosenDataMovie => store.chosenMovie;
 export const selectSortBy = (store: InitialState): SortBy => store.sortBy;
 export const selectSearchBy = (store: InitialState): SearchBy => store.searchBy;
