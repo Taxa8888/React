@@ -2,53 +2,32 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
-import { clickOnSetOffset, loadMovies } from '../../store/movies/movies.actions';
+import { clickOnSetOffset, updateMoviesStore } from '../../store/movies/movies.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    selectIsMoviesLoading,
-    selectMovies,
-    selectOffset,
-    selectSearchBy,
-    selectsearchInput,
-    selectSortBy,
-    selectTotal,
-} from '../../store/movies/movies.selectors';
+import { selectIsMoviesLoading, selectMovies } from '../../store/movies/movies.selectors';
 import { Link } from 'react-router-dom';
 import { Loading } from '../loading/loading';
+import { parseUrlParams, useQuery } from '../app/app.helpers';
 
 export const Main = (): ReactElement => {
     const [paginationValue, setPaginationsValue] = useState(0);
     const movies = useSelector(selectMovies);
-    const total = useSelector(selectTotal);
-    const offset = useSelector(selectOffset);
-    const sortBy = useSelector(selectSortBy);
-    const searchBy = useSelector(selectSearchBy);
     const isMoviesLoading = useSelector(selectIsMoviesLoading);
-    const refSearchBy = useRef(searchBy);
-    refSearchBy.current = searchBy;
-    const searchInputValue = useSelector(selectsearchInput);
     const dispatch = useDispatch();
+    const queryParams = useQuery();
+    const queryParamsRef = useRef(queryParams);
 
     useEffect(() => {
-        dispatch(
-            loadMovies({
-                sortBy: sortBy,
-                search: searchInputValue,
-                searchBy: refSearchBy.current,
-                offset: offset,
-                limit: 8,
-            })
-        );
-    }, [dispatch, sortBy, searchInputValue, offset]);
+        const objectQueryParams = parseUrlParams(queryParamsRef);
+        dispatch(updateMoviesStore(objectQueryParams));
+    }, [dispatch]);
 
-    const onClickOffsetMinus = () => {
-        total;
+    const handleClickOffsetMinus = () => {
         setPaginationsValue(paginationValue - 1);
         dispatch(clickOnSetOffset(paginationValue * 8));
     };
 
-    const onClickOffsetPlus = () => {
-        total;
+    const handleClickOffsetPlus = () => {
         setPaginationsValue(paginationValue + 1);
         dispatch(clickOnSetOffset(paginationValue * 8));
     };
@@ -81,12 +60,12 @@ export const Main = (): ReactElement => {
                 </div>
                 <div className="paginationContainer">
                     <button
-                        onClick={onClickOffsetMinus}
+                        onClick={handleClickOffsetMinus}
                         className="paginationButton paginationButtonMinus"
                     ></button>
                     <input className="paginationInput" type="text" value={paginationValue} />
                     <button
-                        onClick={onClickOffsetPlus}
+                        onClick={handleClickOffsetPlus}
                         className="paginationButton paginationButtonPlus"
                     ></button>
                 </div>

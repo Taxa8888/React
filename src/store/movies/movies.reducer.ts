@@ -6,21 +6,18 @@ import {
     InitialState,
     MoviesAction,
     MoviesLoadActionPayload,
-    ToggleClickOnSearchOptionActionPayload,
     ToggleSearchOptionActionPayload,
-    ToggleSortOptionActionPayload,
 } from './movies.types';
 import {
     LOAD_MOVIES,
-    TOGGLE_SORT_OPTION,
     TOGGLE_SEARCH_OPTION,
-    CLICK_ON_SEARCH,
     GET_MOVIE_BY_ID,
     IS_LOADING_MOVIES_START,
     IS_LOADING_MOVIES_FINISH,
     IS_LOADING_CHOSEN_MOVIE_START,
     IS_LOADING_CHOSEN_MOVIE_FINISH,
     SET_OFFSET,
+    UPDATE_MOVIE_STORE,
 } from './movies.constants';
 
 export const initialState: InitialState = {
@@ -48,17 +45,10 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
                 ...state,
                 offset: (action.payload as ClickOnSetOffset).value,
             };
-        case TOGGLE_SORT_OPTION:
-            return { ...state, sortBy: (action.payload as ToggleSortOptionActionPayload).value };
         case TOGGLE_SEARCH_OPTION:
             return {
                 ...state,
                 searchBy: (action.payload as ToggleSearchOptionActionPayload).value,
-            };
-        case CLICK_ON_SEARCH:
-            return {
-                ...state,
-                searchInput: (action.payload as ToggleClickOnSearchOptionActionPayload).value,
             };
         case GET_MOVIE_BY_ID:
             return {
@@ -84,6 +74,11 @@ export const moviesReducer = (state = initialState, action: MoviesAction): Initi
             return {
                 ...state,
                 isChosenMovieLoadin: false,
+            };
+        case UPDATE_MOVIE_STORE:
+            return {
+                ...state,
+                ...action.payload,
             };
         default:
             return state;

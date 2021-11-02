@@ -3,7 +3,7 @@ import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
 import './sort.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSortOption } from '../../store/movies/movies.actions';
+import { updateMoviesStore } from '../../store/movies/movies.actions';
 import { selectMovies, selectSortBy } from '../../store/movies/movies.selectors';
 
 export const Sort = (): ReactElement => {
@@ -12,7 +12,11 @@ export const Sort = (): ReactElement => {
     const dispatch = useDispatch();
 
     const toggleSortBy = (sortBy: SortBy) => () => {
-        dispatch(toggleSortOption(sortBy));
+        dispatch(
+            updateMoviesStore({
+                sortBy,
+            })
+        );
     };
 
     return (
