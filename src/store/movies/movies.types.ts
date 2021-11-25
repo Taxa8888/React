@@ -70,23 +70,13 @@ export type ChosenMoviesActionPayload = ResponseDataMovie;
 export interface ToggleSearchOptionActionPayload {
     value: SearchBy;
 }
-export interface ToggleClickOnSearchOptionActionPayload {
-    value: string;
-}
-
-export interface ClickOnSetOffset {
-    value: number;
-}
-
 export interface Action {
     type: string;
 }
 
 type MoviesActionPayloads =
     | MoviesLoadActionPayload
-    | ClickOnSetOffset
     | ToggleSearchOptionActionPayload
-    | ToggleClickOnSearchOptionActionPayload
     | ChosenMoviesActionPayload;
 export interface MoviesAction<T = MoviesActionPayloads> extends Action {
     payload: T;

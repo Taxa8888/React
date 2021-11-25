@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
-import { HEADER_BG_IMAGE } from '../header/header.constants';
-import { Button } from '../button/button';
+import { HEADER_BG_IMAGE } from '../Header/header.constants';
+import { Button } from '../Button/button';
 import './headerdescription.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovieById } from '../../store/movies/movies.actions';

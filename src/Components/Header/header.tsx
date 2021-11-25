@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Search } from '../search/search';
+import { Search } from '../Search/search';
 import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from './header.constants';
 import './header.style.scss';

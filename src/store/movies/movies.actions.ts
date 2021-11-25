@@ -9,13 +9,11 @@ import {
     IS_LOADING_MOVIES_FINISH,
     IS_LOADING_CHOSEN_MOVIE_START,
     IS_LOADING_CHOSEN_MOVIE_FINISH,
-    SET_OFFSET,
     UPDATE_MOVIE_STORE,
 } from './movies.constants';
 import {
     Action,
     ChosenMoviesActionPayload,
-    ClickOnSetOffset,
     InitialState,
     LoadMoviesProps,
     MoviesAction,
@@ -24,12 +22,12 @@ import {
     UpdateMoviesStoreParams,
 } from './movies.types';
 
-export const startMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_START });
-export const finishMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_FINISH });
-export const startChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_START });
-export const finishChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_FINISH });
+const startMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_START });
+const finishMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_FINISH });
+const startChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_START });
+const finishChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_FINISH });
 
-export const loadMovies = ({
+const loadMovies = ({
     sortBy = SortBy.RELEASEDATE,
     search = '',
     searchBy = SearchBy.TITLE,
@@ -52,12 +50,6 @@ export const loadMovies = ({
 export const toggleSearchOption = (value: SearchBy) => {
     return (dispatch: Dispatch<MoviesAction<ToggleSearchOptionActionPayload>>): void => {
         dispatch({ type: TOGGLE_SEARCH_OPTION, payload: { value } });
-    };
-};
-
-export const clickOnSetOffset = (value: number) => {
-    return (dispatch: Dispatch<MoviesAction<ClickOnSetOffset>>): void => {
-        dispatch({ type: SET_OFFSET, payload: { value } });
     };
 };
 

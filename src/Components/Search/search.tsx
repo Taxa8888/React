@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
-import { Button } from '../button/button';
+import { Button } from '../Button/button';
 import { SearchBy } from '../app/app.types';
 import { SearchProps } from './search.types';
 import './search.style.scss';
