@@ -2,44 +2,48 @@ import { Dispatch } from 'react';
 import { SearchBy, SortBy } from '../../Components/app/app.types';
 import {
     LOAD_MOVIES,
-    TOGGLE_SORT_OPTION,
     TOGGLE_SEARCH_OPTION,
-    CLICK_ON_SEARCH,
     GET_MOVIE_BY_ID,
     MAIN_ENDPOINT,
+    IS_LOADING_MOVIES_START,
+    IS_LOADING_MOVIES_FINISH,
+    IS_LOADING_CHOSEN_MOVIE_START,
+    IS_LOADING_CHOSEN_MOVIE_FINISH,
+    UPDATE_MOVIE_STORE,
 } from './movies.constants';
 import {
+    Action,
     ChosenMoviesActionPayload,
-    DataMovie,
+    InitialState,
     LoadMoviesProps,
     MoviesAction,
     MoviesLoadActionPayload,
-    ToggleClickOnSearchOptionActionPayload,
     ToggleSearchOptionActionPayload,
-    ToggleSortOptionActionPayload,
+    UpdateMoviesStoreParams,
 } from './movies.types';
 
-export const loadMovies = ({
+const startMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_START });
+const finishMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_FINISH });
+const startChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_START });
+const finishChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_FINISH });
+
+const loadMovies = ({
     sortBy = SortBy.RELEASEDATE,
     search = '',
     searchBy = SearchBy.TITLE,
     offset = 0,
     limit = 8,
 }: LoadMoviesProps) => {
-    return (dispatch: Dispatch<MoviesAction<MoviesLoadActionPayload>>): Promise<void> => {
+    return (dispatch: Dispatch<MoviesAction<MoviesLoadActionPayload> | Action>): Promise<void> => {
+        dispatch(startMoviesLoading());
         return fetch(
             `${MAIN_ENDPOINT}?sortBy=${sortBy}&sortOrder=asc&search=${search}&searchBy=${searchBy}&offset=${offset}&limit=${limit}`
         )
             .then((response) => response.json())
             .then((data) => {
                 dispatch({ type: LOAD_MOVIES, payload: data });
-            });
-    };
-};
-
-export const toggleSortOption = (value: SortBy) => {
-    return (dispatch: Dispatch<MoviesAction<ToggleSortOptionActionPayload>>): void => {
-        dispatch({ type: TOGGLE_SORT_OPTION, payload: { value } });
+            })
+            .then(() => dispatch(finishMoviesLoading()));
     };
 };
 
@@ -49,16 +53,37 @@ export const toggleSearchOption = (value: SearchBy) => {
     };
 };
 
-export const clickOnSearch = (value: string) => {
-    return (dispatch: Dispatch<MoviesAction<ToggleClickOnSearchOptionActionPayload>>): void => {
-        dispatch({ type: CLICK_ON_SEARCH, payload: { value } });
+export const getMovieById = (id: string) => {
+    return (
+        dispatch: Dispatch<MoviesAction<ChosenMoviesActionPayload> | Action>
+    ): Promise<void> => {
+        dispatch(startChosenMovieLoading());
+        return fetch(`${MAIN_ENDPOINT}/${id}`)
+            .then((response) => response.json())
+            .then((data) => dispatch({ type: GET_MOVIE_BY_ID, payload: data }))
+            .then(() => dispatch(finishChosenMovieLoading()));
     };
 };
 
-export const getMovieById = ({ id }: DataMovie) => {
-    return (dispatch: Dispatch<MoviesAction<ChosenMoviesActionPayload>>): Promise<void> => {
-        return fetch(`${MAIN_ENDPOINT}/${id}`)
-            .then((response) => response.json())
-            .then((data) => dispatch({ type: GET_MOVIE_BY_ID, payload: data }));
+export const updateMoviesStore = (payload: UpdateMoviesStoreParams) => {
+    return (
+        dispatch: Dispatch<
+            | MoviesAction<UpdateMoviesStoreParams>
+            | ((
+                  dispatch: Dispatch<MoviesAction<MoviesLoadActionPayload> | Action>
+              ) => Promise<void>)
+        >,
+        getState: () => InitialState
+    ): void => {
+        const { sortBy, searchBy, searchInput, offset } = getState();
+        dispatch({ type: UPDATE_MOVIE_STORE, payload });
+        dispatch(
+            loadMovies({
+                sortBy: payload.sortBy || sortBy,
+                search: payload.searchInput || searchInput,
+                searchBy: payload.searchBy || searchBy,
+                offset: payload.offset || offset,
+            })
+        );
     };
 };

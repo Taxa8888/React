@@ -7,3 +7,8 @@ export enum SearchBy {
     TITLE = 'title',
     GENRE = 'genres',
 }
+
+export interface ParseUrlParams {
+    searchBy?: SearchBy;
+    searchInput?: string;
+}

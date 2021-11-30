@@ -35,46 +35,49 @@ export interface ResponseDataMovie {
 }
 
 export interface InitialState {
-    movies: DataMovie[];
-    chosenMovie: ChosenDataMovie;
-    sortBy: SortBy;
-    searchBy: SearchBy;
-    searchInput: string;
-    isRoute: boolean;
+    movies?: DataMovie[];
+    total?: number;
+    offset?: number;
+    chosenMovie?: ChosenDataMovie;
+    sortBy?: SortBy;
+    searchBy?: SearchBy;
+    searchInput?: string;
+    isMoviesLoading?: boolean;
+    isChosenMovieLoadin?: boolean;
 }
 
 export interface LoadMoviesProps {
-    search: string;
-    sortBy: SortBy;
-    searchBy: SearchBy;
-    offset: number;
-    limit: number;
+    search?: string;
+    sortBy?: SortBy;
+    searchBy?: SearchBy;
+    offset?: number;
+    limit?: number;
 }
 
+export interface UpdateMoviesStoreParams extends Omit<LoadMoviesProps, 'limit' | 'search'> {
+    searchInput?: string;
+}
+
+export interface LinkParams {
+    id: string;
+}
 export interface MoviesLoadActionPayload {
     data: ResponseDataMovie[];
+    total: number;
 }
 
 export type ChosenMoviesActionPayload = ResponseDataMovie;
-export interface ToggleSortOptionActionPayload {
-    value: SortBy;
-}
-
 export interface ToggleSearchOptionActionPayload {
     value: SearchBy;
 }
-
-export interface ToggleClickOnSearchOptionActionPayload {
-    value: string;
+export interface Action {
+    type: string;
 }
 
 type MoviesActionPayloads =
     | MoviesLoadActionPayload
-    | ToggleSortOptionActionPayload
     | ToggleSearchOptionActionPayload
-    | ToggleClickOnSearchOptionActionPayload
     | ChosenMoviesActionPayload;
-export interface MoviesAction<T = MoviesActionPayloads> {
-    type: string;
+export interface MoviesAction<T = MoviesActionPayloads> extends Action {
     payload: T;
 }

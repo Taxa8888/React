@@ -1,21 +1,83 @@
 .main {
-  width: 100%;
-  display: flex;
-  padding: 2rem 0;
-  background-color: #f5f5f5;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    background-color: #f5f5f5;
 }
 
 .mainContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .notFound {
-  display: flex;
-  min-height: 800px;
-  font-size: 76px;
-  align-items: center;
+    display: flex;
+    min-height: 800px;
+    font-size: 76px;
+    align-items: center;
+}
+
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginationInput {
+    width: 40px;
+    height: 25px;
+    border-radius: 35%;
+    text-align: center;
+}
+
+.paginationButton {
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: 1.9em;
+    height: 1.9em;
+    line-height: 1.3em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
+    font-size: 300%;
+    font-weight: 900;
+    color: #000;
+    border-radius: 100%;
+    background: rgb(144, 142, 105) linear-gradient(rgb(185, 181, 151), rgb(144, 142, 105));
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.5), inset 0 2px 1px rgba(255, 255, 255, 0.9),
+        0 4px 4px rgba(0, 0, 0, 0.9);
+}
+
+.paginationButtonPlus:after {
+    content: '+';
+    position: absolute;
+    z-index: -1;
+    top: 12%;
+    left: 12%;
+    right: 12%;
+    bottom: 12%;
+    border-radius: 100%;
+    background: rgb(242, 203, 20) linear-gradient(rgb(242, 203, 20), rgb(255, 182, 7));
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.5), inset 0 -2px 1px rgba(255, 255, 255, 0.3);
+}
+
+.paginationButtonMinus:after {
+    content: '-';
+    text-align: center;
+    position: absolute;
+    z-index: -1;
+    top: 12%;
+    left: 12%;
+    right: 12%;
+    bottom: 12%;
+    border-radius: 100%;
+    background: rgb(242, 203, 20) linear-gradient(rgb(242, 203, 20), rgb(255, 182, 7));
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.5), inset 0 -2px 1px rgba(255, 255, 255, 0.3);
 }
