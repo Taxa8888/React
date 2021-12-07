@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should render Footer component 1`] = `
+<header
+  className="footer"
+  style={
+    Object {
+      "backgroundImage": "url(test-file-stub)",
+    }
+  }
+>
+  <div
+    className="footerContainer"
+  >
+    <p
+      className="footerTitle"
+    >
+      netflixroulette
+    </p>
+  </div>
+</header>
+`;

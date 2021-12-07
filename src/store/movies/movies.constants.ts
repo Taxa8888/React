@@ -1,5 +1,4 @@
 export const MAIN_ENDPOINT = 'https://reactjs-cdp.herokuapp.com/movies';
-export const SET_OFFSET = 'SET_OFFSET';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
 export const TOGGLE_SEARCH_OPTION = 'TOGGLE_SEARCH_OPTION';
 export const GET_MOVIE_BY_ID = 'GET_MOVIE_BY_ID';

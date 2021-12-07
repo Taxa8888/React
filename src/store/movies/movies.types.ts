@@ -1,4 +1,4 @@
-import { SearchBy, SortBy } from '../../Components/app/app.types';
+import { SearchBy, SortBy } from '../../components/app/app.types';
 
 export interface ChosenDataMovie {
     title: string;

@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 
 /*global global, console*/
 // React 16 Enzyme adapter
+
 Enzyme.configure({ adapter: new Adapter() });
 
 global.shallow = shallow;

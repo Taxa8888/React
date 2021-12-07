@@ -1,9 +1,12 @@
-/*global it, expect*/
+import { shallow } from 'enzyme';
+import React from 'react';
+import { App } from './app';
 
-it('should be valid', () => {
-    expect(1).toBe(1);
-});
+/*global describe, it, expect*/
 
-it('should return error', () => {
-    expect(2).toBe(2);
+describe('App component', () => {
+    it('should render App component', () => {
+        const component = shallow(<App />);
+        expect(component).toMatchSnapshot();
+    });
 });

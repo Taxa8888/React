@@ -34,6 +34,7 @@
         "@babel/preset-env": "7.14.4",
         "@babel/preset-react": "7.13.13",
         "@babel/preset-typescript": "7.15.0",
+        "@types/jest": "27.0.3",
         "@types/react": "17.0.18",
         "@types/react-dom": "17.0.9",
         "@typescript-eslint/eslint-plugin": "4.28.3",
@@ -62,12 +63,14 @@
         "html-loader": "2.1.2",
         "html-webpack-plugin": "5.3.1",
         "husky": "7.0.2",
+        "identity-obj-proxy": "3.0.0",
         "jest": "27.0.3",
         "mini-css-extract-plugin": "1.6.0",
         "prettier": "2.3.2",
         "redux-devtools-extension": "2.13.9",
         "sass": "1.35.0",
         "sass-loader": "12.1.0",
+        "ts-jest": "27.1.0",
         "webpack": "5.38.1",
         "webpack-cli": "4.7.0",
         "webpack-dev-server": "4.6.0"
@@ -84,23 +87,5 @@
         "redux": "4.1.0",
         "redux-thunk": "2.3.0",
         "typescript": "4.3.5"
-    },
-    "jest": {
-        "verbose": true,
-        "clearMocks": true,
-        "collectCoverage": true,
-        "setupFilesAfterEnv": [
-            "./src/testconfig/test.config.js"
-        ],
-        "snapshotSerializers": [
-            "./node_modules/enzyme-to-json/serializer"
-        ],
-        "transform": {
-            "^.+\\.js$": "babel-jest"
-        },
-        "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.js",
-            "\\.(css|scss)$": "identity-obj-proxy"
-        }
     }
 }
