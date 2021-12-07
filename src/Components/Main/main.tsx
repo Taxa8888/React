@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useRef } from 'react';
-import { MovieCard } from '../MovieCard/movieCard';
+import { MovieCard } from '../movieCard/movieCard';
 import { DataMovie } from '../../store/movies/movies.types';
 import './main.style.scss';
 import { updateMoviesStore } from '../../store/movies/movies.actions';

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Button } from '../Button/button';
+import { Button } from '../button/button';
 import { SortBy } from '../app/app.types';
 import './sort.style.scss';
 import { useDispatch, useSelector } from 'react-redux';

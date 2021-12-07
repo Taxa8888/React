@@ -3,11 +3,10 @@
     "version": "1.0.0",
     "description": "Study project, React, Redux, Webpack",
     "main": "index.js",
-    "jest": {
-        "verbose": true
-    },
     "scripts": {
         "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
         "build": "webpack --mode production",
         "dev": "webpack serve",
         "lint": "npx eslint ./src --ext .ts,.tsx",
@@ -40,9 +39,15 @@
         "@typescript-eslint/eslint-plugin": "4.28.3",
         "@typescript-eslint/parser": "4.28.3",
         "babel": "6.5.2",
+        "babel-core": "6.26.3",
+        "babel-eslint": "10.1.0",
+        "babel-jest": "27.4.2",
         "babel-loader": "8.2.2",
         "clean-webpack-plugin": "4.0.0-alpha.0",
         "css-loader": "5.2.6",
+        "enzyme": "3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6",
+        "enzyme-to-json": "3.6.2",
         "eslint": "7.30.0",
         "eslint-config-airbnb": "18.2.1",
         "eslint-config-prettier": "8.3.0",
@@ -65,7 +70,7 @@
         "sass-loader": "12.1.0",
         "webpack": "5.38.1",
         "webpack-cli": "4.7.0",
-        "webpack-dev-server": "3.11.2"
+        "webpack-dev-server": "4.6.0"
     },
     "dependencies": {
         "@types/react-router": "5.1.16",
@@ -79,5 +84,23 @@
         "redux": "4.1.0",
         "redux-thunk": "2.3.0",
         "typescript": "4.3.5"
+    },
+    "jest": {
+        "verbose": true,
+        "clearMocks": true,
+        "collectCoverage": true,
+        "setupFilesAfterEnv": [
+            "./src/testconfig/test.config.js"
+        ],
+        "snapshotSerializers": [
+            "./node_modules/enzyme-to-json/serializer"
+        ],
+        "transform": {
+            "^.+\\.js$": "babel-jest"
+        },
+        "moduleNameMapper": {
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.js",
+            "\\.(css|scss)$": "identity-obj-proxy"
+        }
     }
 }
