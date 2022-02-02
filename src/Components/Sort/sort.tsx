@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Button } from '../button/button';
-import { SortBy } from '../app/app.types';
+import { SortBy } from '../app1/app.types';
 import './sort.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMoviesStore } from '../../store/movies/movies.actions';

@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { Button } from '../button/button';
-import { SearchBy } from '../app/app.types';
+import { SearchBy } from '../app1/app.types';
 import { SearchProps } from './search.types';
 import './search.style.scss';
 import { useDispatch, useSelector } from 'react-redux';

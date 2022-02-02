@@ -1,4 +1,4 @@
-import { SearchBy, SortBy } from '../../components/app/app.types';
+import { SearchBy, SortBy } from '../../components/app1/app.types';
 import { ChosenDataMovie, DataMovie, InitialState } from './movies.types';
 
 export const selectMovies = (store: InitialState): DataMovie[] => store.movies;
