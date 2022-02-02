@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import noImage from '../../assets/no_image.png';
-import { MovieImageProps } from './movieImage.types';
+import { MovieImageProps } from './movieimage.types';
 
 export const MovieImage: FC<MovieImageProps> = ({ title, posterPath, className }): ReactElement => {
     const [isLoadImageError, setIsLoadImageError] = useState(false);

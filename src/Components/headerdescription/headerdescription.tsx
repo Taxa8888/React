@@ -6,7 +6,7 @@ import './headerdescription.style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovieById } from '../../store/movies/movies.actions';
 import { selectChosenMovie, selectIsChosenMovieLoadin } from '../../store/movies/movies.selectors';
-import { MovieImage } from '../movieImage/movieImage';
+import { MovieImage } from '../movieimage/movieimage';
 import { Link, useParams } from 'react-router-dom';
 import { Loading } from '../loading/loading';
 import { LinkParams } from '../../store/movies/movies.types';

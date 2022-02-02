@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
-import { MovieCardProps } from './movieCard.types';
-import './movieCard.style.scss';
-import { MovieImage } from '../movieImage/movieImage';
+import { MovieCardProps } from './moviecard.types';
+import './moviecard.style.scss';
+import { MovieImage } from '../movieimage/movieimage';
 
 export const MovieCard: FC<MovieCardProps> = ({ img, title, year, time, genre }): ReactElement => (
     <div className="movie">

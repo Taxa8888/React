@@ -19,7 +19,7 @@ module.exports = (env, { mode }) => {
             host: 'localhost',
             port: 3000,
             historyApiFallback: true,
-            contentBase: path.resolve(__dirname, 'build'),
+            static: path.resolve(__dirname, 'build'),
             open: true,
             compress: true,
             hot: true,
