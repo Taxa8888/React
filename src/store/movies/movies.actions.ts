@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { SearchBy, SortBy } from '../../components/app1/app.types';
+import { SearchBy, SortBy } from '../../components1/app/app.types';
 import {
     LOAD_MOVIES,
     TOGGLE_SEARCH_OPTION,

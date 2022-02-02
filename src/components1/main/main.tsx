@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsMoviesLoading, selectMovies } from '../../store/movies/movies.selectors';
 import { Link } from 'react-router-dom';
 import { Loading } from '../loading/loading';
-import { parseUrlParams, useQuery } from '../app1/app.helpers';
+import { parseUrlParams, useQuery } from '../app/app.helpers';
 
 export const Main = (): ReactElement => {
     const dispatch = useDispatch();

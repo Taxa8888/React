@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { MAIN_PROJECT_TITLE } from '../app1/app.constants';
+import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { FOOTER_BG_IMAGE } from './footer.constants';
 import './footer.style.scss';
 

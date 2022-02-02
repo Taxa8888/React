@@ -1,4 +1,4 @@
-import { SearchBy, SortBy } from '../../components/app1/app.types';
+import { SearchBy, SortBy } from '../../components1/app/app.types';
 import { mapChosenMovie, mapMovies } from './movies.helper';
 import {
     ChosenMoviesActionPayload,

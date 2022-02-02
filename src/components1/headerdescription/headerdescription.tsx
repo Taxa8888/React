@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { MAIN_PROJECT_TITLE } from '../app1/app.constants';
+import { MAIN_PROJECT_TITLE } from '../app/app.constants';
 import { HEADER_BG_IMAGE } from '../header/header.constants';
 import { Button } from '../button/button';
 import './headerdescription.style.scss';
