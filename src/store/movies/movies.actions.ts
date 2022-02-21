@@ -27,7 +27,7 @@ const finishMoviesLoading = (): Action => ({ type: IS_LOADING_MOVIES_FINISH });
 const startChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_START });
 const finishChosenMovieLoading = (): Action => ({ type: IS_LOADING_CHOSEN_MOVIE_FINISH });
 
-const loadMovies = ({
+export const loadMovies = ({
     sortBy = SortBy.RELEASEDATE,
     search = '',
     searchBy = SearchBy.TITLE,

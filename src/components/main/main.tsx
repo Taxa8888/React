@@ -15,9 +15,12 @@ export const Main = (): ReactElement => {
     const isMoviesLoading = useSelector(selectIsMoviesLoading);
     const queryParams = useQuery();
     const queryParamsRef = useRef(queryParams);
+    console.log(queryParamsRef);
 
     useEffect(() => {
         const objectQueryParams = parseUrlParams(queryParamsRef);
+        console.log(objectQueryParams);
+
         dispatch(updateMoviesStore(objectQueryParams));
     }, [dispatch]);
 
